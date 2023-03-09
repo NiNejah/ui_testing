@@ -2,18 +2,19 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 const assert = require("assert");
 const client = require("./config/db");
 // const should = require("chai").should();
-import { ENDPOINT } from "./config/config";
-import { getCommand } from "./tooles/dbTooles";
-// const { Options } = require('selenium-webdriver/firefox');
-// const { Console } = require("console");
+const  ENDPOINT = require ("./config/config");
+const getCommand = require ("./tooles/dbTooles");
+const driverTooles = require ("./tooles/driverTooles");
+const { clickOn , sendKeysById, getTextById } = driverTooles ;
 
 
 
 const testAllTeachers = async (driver) => {
-    let teachers = await driver.findElement(By.id("name_selector")).getText().then((v)=>{
-        return v;
-    });
-    // console.log(teachers);
+    let teachers = await getTextById(driver ,"name_selector");
+    // await driver.findElement(By.id("name_selector")).getText().then((v)=>{
+    //     return v;
+    // });
+    console.log(teachers);
     let teachersArray = teachers.split('\n');
     let teacherFromDb = await getCommand(client,'SELECT full_name FROM teacher;');
     // console.log(teacherFromDb[0].full_name);
@@ -42,26 +43,19 @@ const testAllTeacherDates = async (driver,teacherId=1) => {
 
 const  availabilityTest = async (driver) => {
 
-    let avai_bt = await driver.findElement(By.id("display_availability"));
-    await avai_bt.click();
-
+    await clickOn(driver,"display_availability");
 
     await testAllTeachers(driver);
+    
+    await clickOn(driver,"sub_availability");
+    await clickOn(driver,"display_availability");
 
-    let sub = await driver.findElement(By.id("sub_availability"));
-    await sub.click();
-
-
-    let avai_bt2 = await driver.findElement(By.id("display_availability"));
-    await avai_bt2.click();
-    await testAllTeacherDates(driver);
+    // await testAllTeacherDates(driver);
 
     // let dates = await driver.findElement(By.css("ul")).getText().then((v)=>{
     //         return v;
     //     });
     // console.log(dates);
-
-
 
 }
 const creatTeacherTest = async (driver)=>{
@@ -133,11 +127,11 @@ const mainTest = async () => {
     await client.connect();
     let driver = new Builder().forBrowser('firefox').setFirefoxOptions().build();
     await driver.get(ENDPOINT);
-    // await availabilityTest(driver);
-    await creatTeacherTest(driver);
-    await driver.quit();
+    await availabilityTest(driver);
+    // await creatTeacherTest(driver);
+    // await driver.quit();
     // TODO ...
     // await makeAppointment(driver);
-    // client.end();
+    client.end();
 }
 mainTest();
