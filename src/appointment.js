@@ -2,11 +2,11 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 const assert = require("assert");
 const client = require("./config/db");
 // const should = require("chai").should();
-const  ENDPOINT = require ("./config/config");
+const sleep = require("./tooles/tooles");
+const ENDPOINT = require ("./config/config");
 const getCommand = require ("./tooles/dbTooles");
 const driverTooles = require ("./tooles/driverTooles");
 const { clickOn , sendKeysById, getTextById } = driverTooles ;
-
 
 
 const testAllTeachers = async (driver) => {
@@ -41,12 +41,12 @@ const testAllTeacherDates = async (driver,teacherId=1) => {
 
 }
 
-const  availabilityTest = async (driver) => {
+const availabilityTest = async (driver) => {
 
     await clickOn(driver,"display_availability");
 
     await testAllTeachers(driver);
-    
+
     await clickOn(driver,"sub_availability");
     await clickOn(driver,"display_availability");
 
@@ -56,51 +56,52 @@ const  availabilityTest = async (driver) => {
     //         return v;
     //     });
     // console.log(dates);
-
 }
+
 const creatTeacherTest = async (driver)=>{
     let teacherNbBefore = await getCommand(client,"select * from teacher ;").then((v)=>{
         return v.length ;
     });
 
-    let add_bt = await driver.findElement(By.id("add_teacher"));
-    await add_bt.click();
+    await clickOn(driver,"add_teacher");
+
+    // let add_bt = await driver.findElement(By.id("add_teacher"));
+    // await add_bt.click();
 
     let myd = new Date("2024-12-08");
     // console.log(myd);
     myd = myd.toISOString().split('T')[0];
     // console.log(myd);
-    let testInput = ["testName", "test@email.ts", "testEduc", myd ]
-    let ids = [ "fnameEnse", "emailEnse","EducationEnse","dateEnse"] ;
+    let testInput = ["testName", "test@email.ts", "testEduc", myd ]; 
+    let ids = [ "fnameEnse", "emailEnse","EducationEnse","dateEnse"];
     for (let i = 0; i < testInput.length; i++) {
-        let input =  await driver.findElement(By.id(ids[i])) ;
-        input.clear();
-        // console.log(testInput[i]);
-        input.sendKeys(testInput[i]);
+        sendKeysById(driver, ids[i], testInput[i]);
     }
-    await driver.findElement(By.id(ids[0])).sendKeys(Key.RETURN);
-    
-    let test = await driver.wait(until.elementsLocated(By.css("body")),2000).getAttribute("innerHTML");
-    // let test2 = await driver.page_source.
-    console.log("------------------------------")
-    console.log(test);
-    // see if we have the date in available list : 
-    // let cmd = "SELECT  a.date  FROM teacher t INNER JOIN available a ON t.id_teacher = a.id_teacher WHERE t.full_name = 'testName' " ;
+    sendKeysById(driver, ids[0], Key.RETURN);
+    // await driver.findElement(By.id(ids[0])).sendKeys(Key.RETURN);
+  
 
-    // let newAv = await getCommand(client,cmd).then((v)=>{
-    //     return v.length ; 
-    // });
+    // see if we have the date in available list : 
+    let cmd = "SELECT  a.date  FROM teacher t INNER JOIN available a ON t.id_teacher = a.id_teacher WHERE t.full_name = 'testName' " ;
+
+    let newAv = await getCommand(client,cmd).then((v)=>{
+        return v.length ; 
+    });
+    await sleep(200);
+
+    let body = await driver.findElement(By.css("body")).getText().then ((v)=>{
+        return v ; 
+    })
+
+    console.log(body);
     
-    // let teacherNbAfter = await getCommand(client,"select * from teacher ;")
-    // .then((v)=>{
-    //     return v.length ;
-    // })
+    let teacherNbAfter = await getCommand(client,"select * from teacher ;")
+    .then((v)=>{
+        return v.length ;
+    });
     
     // assert.strictEqual(newAv,1);
-    // assert.strictEqual(teacherNbAfter,teacherNbBefore+1);
-
-
-
+    assert.strictEqual(teacherNbAfter,teacherNbBefore+1);
 }
 
 const makeAppointment = async (driver) =>{
@@ -119,17 +120,16 @@ const makeAppointment = async (driver) =>{
     }
     await driver.findElement(By.id(ids[0])).sendKeys(Key.RETURN);
     // ...
-
-}
+}   
 
 const mainTest = async () => {
 
     await client.connect();
-    let driver = new Builder().forBrowser('firefox').setFirefoxOptions().build();
+    let driver = new Builder().forBrowser('firefox').build();
     await driver.get(ENDPOINT);
-    await availabilityTest(driver);
-    // await creatTeacherTest(driver);
-    // await driver.quit();
+    // await availabilityTest(driver);
+    await creatTeacherTest(driver);
+    await driver.quit();
     // TODO ...
     // await makeAppointment(driver);
     client.end();

@@ -14,11 +14,11 @@ const clickOn = async ( driver , elmId )=>{
  * 
  * @param {ThenableWebDriver } driver A valide selenium-webdriver instance 
  * @param {string} elmId The ID to search for
- * @param {string} text The text to set. 
+ * @param {string | Date } text The text to set. 
  */
 const sendKeysById = async ( driver , elmId , text )=>{ 
     let input =  await driver.findElement(By.id(elmId)) ;
-    input.clear();
+    // input.clear();
     // console.log(key);
     input.sendKeys(text);
 }
