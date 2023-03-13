@@ -1,24 +1,23 @@
 const { Builder, By, Key, until } = require("selenium-webdriver");
-const assert = require("assert");
 const client = require("../config/db");
 // const should = require("chai").should();
-const sleep = require("../tooles/tooles");
 const ENDPOINT = require ("../config/config");
-const getCommand = require ("../tooles/dbTooles");
-const driverTooles = require ("../tooles/driverTooles");
-const test = require("./abstract");
-const { clickOn , sendKeysById, getTextById } = driverTooles ;
-const Compare = require("../tooles/compare");
+const availabilityTests = require("./availability");
+
 
 
 let main =  async ()=>{
-    console.log ("bonjour...");
+    console.log ("tests start ...");
     await client.connect();
-    let driver = new Builder().forBrowser('firefox').build();
+    const driver = new Builder().forBrowser('firefox').build();
     await driver.get(ENDPOINT);
-    let compare = new Compare();
-    let t = await test(driver,async ()=>{await clickOn(driver,"display_availability");},"name_selector",client,'SELECT full_name FROM teacher;', compare.compare);
-    console.log("res :" , t );
+    const compare = new Compare();
+    
+    await availabilityTests(driver,client,compare);
+    // TODO add make appointment test here ...
+
+    // TODO add teacher list here ...
+
     await driver.close();
 }
 
