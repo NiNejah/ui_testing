@@ -50,17 +50,17 @@ const fieldIsCompleted = async (driver, elmId)=>{
             return false;
         }
         return true;
+        // return v == '' ?! ; 
     });
     return res;
 }
+
 const  Dateiscorrect = async (driver,elmId) => {
      let res = await driver.findElement(By.id(elmId)).getText().then((v)=>{
-
         const now = new Date();
         const date = now.toLocaleDateString();
         console.log(date);
         console.log(v);
-
 
         if (v>=date){
               return true;
@@ -68,7 +68,7 @@ const  Dateiscorrect = async (driver,elmId) => {
         else {
             return false;
         }
-
+        // return v >= date ?! 
     });
     return res ;
 }
