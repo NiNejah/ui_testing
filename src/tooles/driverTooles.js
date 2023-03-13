@@ -1,7 +1,7 @@
 const { By } = require("selenium-webdriver");
 
 /**
- * 
+ * click on elment on the Browser
  * @param {ThenableWebDriver } driver A valide selenium-webdriver instance 
  * @param {string} elmId The ID to search for
  * @return {!Promise} A promise that will be resolved when the click command has completed.
