@@ -16,10 +16,21 @@ let main =  async ()=>{
     await client.connect();
     let driver = new Builder().forBrowser('firefox').build();
     await driver.get(ENDPOINT);
-    let compare = new Compare();
-    let t = await test(driver,async ()=>{await clickOn(driver,"display_availability");},"name_selector",client,'SELECT full_name FROM teacher;', compare.compare);
-    console.log("res :" , t );
-    await driver.close();
+    //let compare = new Compare();
+    //let t = await test(driver,async ()=>{await clickOn(driver,"display_availability");},"name_selector",client,'SELECT full_name FROM teacher;', compare.compare);
+    
+    const listId = ["fnameEnse", "emailEnse", "EducationEnse", "dateEnse"];
+    let t2 = await test.testFormIscompleted(driver, async ()=>{await clickOn(driver, "add_teacher");}, listId);
+    console.log("res :" , t2 );
+
+    // await clickOn(driver, "add_teacher");
+    // await sendKeysById(driver, "fnameEnse","nayar");
+    // let testnayar = await driverTooles.fieldIsCompleted(driver, "fnameEnse");
+    // console.log("resnayar :" , testnayar );
+    
+    
+    //console.log("res :" , t );
+    //await driver.close();
 }
 
 main() ; 

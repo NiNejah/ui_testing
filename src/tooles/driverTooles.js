@@ -36,4 +36,23 @@ const getTextById = async ( driver , elmId  )=>{
     return res ; 
 }
 
-module.exports = { clickOn , sendKeysById, getTextById } ; 
+
+/**
+ * 
+ * @param {ThenableWebDriver } driver A valide selenium-webdriver instance.
+ * @param {string} elmId The ID to search for.
+ * @return {boolean} false if element's empty else true.
+ */
+const fieldIsCompleted = async (driver, elmId)=>{ 
+    let res = await driver.findElement(By.id(elmId)).getText().then((v)=>{
+        console.log(v);
+        if(v == ''){
+            return false;
+        }
+        return true;
+    });
+    return res;
+}
+
+
+module.exports = { clickOn , sendKeysById, getTextById, fieldIsCompleted} ; 

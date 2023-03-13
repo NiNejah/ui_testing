@@ -128,6 +128,7 @@ const mainTest = async () => {
     let driver = new Builder().forBrowser('firefox').build();
     await driver.get(ENDPOINT);
     // await availabilityTest(driver);
+    //await testAllTeachers(driver);
     await creatTeacherTest(driver);
     await driver.quit();
     // TODO ...
