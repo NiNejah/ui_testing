@@ -1,3 +1,3 @@
-const ENDPOINT = "http://127.0.0.1:8000";
+const ENDPOINT = "http://localhost/automated_web_ui_testing/app/fronend/";
 
 module.exports = ENDPOINT ;

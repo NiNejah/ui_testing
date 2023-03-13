@@ -1,5 +1,5 @@
 const getCommand = require("../tooles/dbTooles");
-const { getTextById, fieldIsCompleted, fieldIsEmpty } = require("../tooles/driverTooles");
+const { getTextById, fieldIsCompleted, sendKeysById,Dateiscorrect,fieldIsEmpty } = require("../tooles/driverTooles");
 
 
 const test = async (driver, beforeAction, elmId, dbClient ,sqlRequete, compareFunction ) => {
@@ -29,4 +29,19 @@ const testFormIscompleted= async(driver, beforeAction, ListIdForm) => {
     return val;
 }
 
-module.exports = {test, testFormIscompleted } ;
+
+const TestDatevalide = async (driver,beforeAction,elmId)  => {
+ 
+    await beforeAction();
+    let val= true;
+    await sendKeysById(driver, "dateEnse","12/12/2024");
+    if(  Dateiscorrect(driver,elmId)==true){
+        return val;
+    }
+    else{
+        val=false;
+    }
+     return val;
+}
+
+module.exports = {test, testFormIscompleted ,TestDatevalide } ;

@@ -53,6 +53,24 @@ const fieldIsCompleted = async (driver, elmId)=>{
     });
     return res;
 }
+const  Dateiscorrect = async (driver,elmId) => {
+     let res = await driver.findElement(By.id(elmId)).getText().then((v)=>{
+
+        const now = new Date();
+        const date = now.toLocaleDateString();
+        console.log(date);
+        console.log(v);
 
 
-module.exports = { clickOn , sendKeysById, getTextById, fieldIsCompleted} ; 
+        if (v>=date){
+              return true;
+        }
+        else {
+            return false;
+        }
+
+    });
+    return res ;
+}
+
+module.exports = { clickOn , sendKeysById, getTextById, fieldIsCompleted,Dateiscorrect } ; 

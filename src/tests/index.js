@@ -19,12 +19,18 @@ let main =  async ()=>{
     //let compare = new Compare();
     //let t = await test(driver,async ()=>{await clickOn(driver,"display_availability");},"name_selector",client,'SELECT full_name FROM teacher;', compare.compare);
     
-    const listId = ["fnameEnse", "emailEnse", "EducationEnse", "dateEnse"];
-    let t2 = await test.testFormIscompleted(driver, async ()=>{await clickOn(driver, "add_teacher");}, listId);
-    console.log("res :" , t2 );
+   // const listId = ["fnameEnse", "emailEnse", "EducationEnse", "dateEnse"];
+   // let t2 = await test.testFormIscompleted(driver, async ()=>{await clickOn(driver, "add_teacher");}, listId);
+    // console.log("res :" , t2 );
 
-    // await clickOn(driver, "add_teacher");
-    // await sendKeysById(driver, "fnameEnse","nayar");
+    //verification date teacher 
+   // await clickOn(driver, "add_teacher");
+  
+    let t3 = await test.TestDatevalide (driver, async ()=>{await clickOn(driver, "add_teacher");}, "dateEnse");
+    console.log("res :" , t3);
+
+    //await clickOn(driver, "add_teacher");
+   // await sendKeysById(driver, "fnameEnse","12/12/12");
     // let testnayar = await driverTooles.fieldIsCompleted(driver, "fnameEnse");
     // console.log("resnayar :" , testnayar );
     
