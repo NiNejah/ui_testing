@@ -19,7 +19,7 @@ const clickOn = async ( driver , elmId )=>{
 const sendKeysById = async ( driver , elmId , text )=>{ 
     let input =  await driver.findElement(By.id(elmId)) ;
     // input.clear();
-    // console.log(key);
+    // console.lvisibleog(key);
     input.sendKeys(text);
 }
 
@@ -29,6 +29,7 @@ const sendKeysById = async ( driver , elmId , text )=>{
  * @param {string} elmId The ID to search for.
  * @return {string} element's visible text.
  */
+
 const getTextById = async ( driver , elmId  )=>{ 
     let res = await driver.findElement(By.id(elmId)).getText().then((v)=>{
         return v;

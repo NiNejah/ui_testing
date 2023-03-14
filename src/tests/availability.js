@@ -1,10 +1,12 @@
-const { clickOn , sendKeysById, getTextById } = driverTooles ;
+const driverTools = require("../tools/driverTools");
+const { clickOn , sendKeysById, getTextById } = driverTools ;
 const test = require("./abstract");
 
 
 const testAllTeachers = async (driver,dbClient , compare ) => {
     const res = await test(driver,async ()=>{await clickOn(driver,"display_availability");},"name_selector",dbClient,'SELECT full_name FROM teacher;', compare.compare);
     // console.log("res :" , res );
+    
 }
 
 const testDatesDisplay = async (driver,dbClient ,compare ,teacherId=1)=> { 
