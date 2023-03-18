@@ -14,7 +14,7 @@ const main =  async ()=>{
     await client.connect();
     await openNavigator();
     const compare = new Compare();
-    let res =  await testSelector (async ()=>{await clickOn("display_availability");},"name_selector",client,'SELECT full_name FROM teacher;','full_name', compare.compare);
+    let res =  await testSelector (async ()=>{await clickOn("display_availability");},"name_selector",'SELECT full_name FROM teacher;','full_name', compare.compare);
     console.log(res);
     await closeNavigator();
 }
