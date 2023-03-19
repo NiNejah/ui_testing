@@ -12,7 +12,6 @@ const test = async (beforeAction, elmId, sqlRequete, compareFunction ) => {
 
 /**
  * 
- * @param {*} driver 
  * @param {*} beforeAction 
  * @param {*} inputIdsValues dictionary array with two keys (inputId , inputText) 
  */

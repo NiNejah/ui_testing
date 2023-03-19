@@ -48,7 +48,7 @@ const sendKeysById = async (elmId , text )=>{
  * @return {string} element's visible text.
  */
 
-const getTextById = async (elmId  )=>{ 
+const getTextById = async (elmId )=>{ 
     let res = await driver.findElement(By.id(elmId)).getText().then((v)=>{
         return v;
     });
