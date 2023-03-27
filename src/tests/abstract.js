@@ -2,13 +2,12 @@ const getRowsFromDb = require("../tools/dbTools");
 const { getTextById } = require("../tools/driverTools");
 
 
-const test = async (driver, beforeAction, elmId, dbClient ,sqlRequete, compareFunction ) => {
+const compareElementWithSqlRequete= async (driver, beforeAction, elmId, dbClient ,sqlRequete, compareFunction ) => {
     await beforeAction();
     let body = await getTextById(driver,elmId);
     let resp = await getRowsFromDb(dbClient,sqlRequete);
     return compareFunction(body,'\n',resp,"full_name");
 }
-
 
 /**
  * 
@@ -38,11 +37,5 @@ const testSelector = async ( driver , beforeAction , elmId , dbClient ,sqlRequet
     let resp = await getRowsFromDb(dbClient,sqlRequete);
     return compareFunction(body,'\n',resp,sqlRow);
 }
-const testInputText =  async (driver, beforeAction, elmId, arg4 , arg5 , ) => {return true ;} 
-const testInputRedio =  async (driver, beforeAction, elmIds, arg4 , arg5 , ) => {return true ;} 
-const testInputTextarea = async (driver, beforeAction, elmId, expectedText ,compareFunction) => {return true ;} 
 
-const testInnerHTML = async (driver, beforeAction, elmId, expectedHTML ,compareFunction) => {return true ;} 
-const testInnerText = async (driver, beforeAction, elmId, expectedText ,compareFunction) => {return true ;} 
-
-module.exports = {test,testSelector} ;
+module.exports = {compareElementWithSqlRequete,testSelector} ;
