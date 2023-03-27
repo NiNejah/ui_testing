@@ -10,7 +10,6 @@ const driverTools = require("../tools/driverTools");
 const { exit } = require("process");
 const { clickOn , sendKeysById, getTextById } = driverTools ;
 
-await client.connect();
 
 const checkNbParam = (paramsLength , expexted , annotation )=>{
     if(paramsLength != expexted ){
@@ -92,6 +91,8 @@ const executeCommand = async (driver, command) => {
 const main =  async ()=>{
     console.log ("tests start ...");
     // await client.connect();
+
+    await client.connect();
     const driver = new Builder().forBrowser('firefox').build();
     readCommandsFile(driver,'com1.txt');
 
