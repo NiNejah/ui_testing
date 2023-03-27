@@ -6,7 +6,7 @@ const test = async (driver, beforeAction, elmId, dbClient ,sqlRequete, compareFu
     await beforeAction();
     let body = await getTextById(driver,elmId);
     let resp = await getRowsFromDb(dbClient,sqlRequete);
-    return compareFunction(body,resp,'\n');
+    return compareFunction(body,'\n',resp,"full_name");
 }
 
 
