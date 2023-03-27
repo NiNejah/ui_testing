@@ -1,10 +1,8 @@
 const { By } = require("selenium-webdriver");
-const navigatorDriver = require ("../config/driver");
+const driver = require ("../config/driver");
 const ENDPOINT = require ("../config/config");
 
 
-// driver a valide selenium-webdriver instance.
-const driver = navigatorDriver;
 
 /**
  * Open navigar

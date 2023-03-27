@@ -9,6 +9,8 @@ const {test,testSelector,compareElementWithSqlRequete} = require("./abstract");
 const driverTools = require("../tools/driverTools");
 const { clickOn , sendKeysById, getTextById, openNavigator, closeNavigator} = driverTools ;
 const { exit } = require("process");
+const driver = require ("../config/driver");
+
 
 
 const checkNbParam = (paramsLength , expexted , annotation )=>{
@@ -17,7 +19,7 @@ const checkNbParam = (paramsLength , expexted , annotation )=>{
         exit(1);
     }
 }
-const readCommandsFile = (driver,fileName) => {
+const readCommandsFile = (fileName) => {
     const fileContent = fs.readFileSync(fileName, 'utf8');
     const lines = fileContent.split('\n');
     let currentCommand = '';
@@ -26,7 +28,7 @@ const readCommandsFile = (driver,fileName) => {
         if (line.startsWith('@')) {
           // Si une commande est déjà en cours, l'exécuter avant de continuer
           if (currentCommand !== '') {
-            executeCommand(driver,currentCommand);
+            executeCommand(currentCommand);
           }
           // Commencer une nouvelle commande
           currentCommand = line.trim();
@@ -34,7 +36,7 @@ const readCommandsFile = (driver,fileName) => {
           // Ajouter la ligne à la commande en cours
           currentCommand += ' ' + line.trim();
           // Exécuter la commande
-          executeCommand(driver,currentCommand);
+          executeCommand(currentCommand);
           // Réinitialiser la commande en cours
           currentCommand = '';
         } else {
@@ -44,7 +46,7 @@ const readCommandsFile = (driver,fileName) => {
       }
 }
 
-const executeCommand = async (driver, command) => {
+const executeCommand = async (command) => {
     // Vérifier si la commande correspond au format attendu
     const regex = /^@(\w+)\s(.+);$/;
     const match = command.match(regex);
@@ -61,23 +63,23 @@ const executeCommand = async (driver, command) => {
                 break ;
             case 'click':
                 //checkNbParam(params.length , 1 , "click");
-                await clickOn(driver, ...params);
+                await clickOn(...params);
                 break ;
             case 'write':
                 //checkNbParam(params.length , 2 , "write");
-                await sendKeysById(driver, ...params);
+                await sendKeysById(...params);
                 break ;
             case 'read':
                 // one for the moment 
                 //checkNbParam(params.length , 1, "read");
-                res = await getTextById(driver, ...params);
+                res = await getTextById(...params);
                 console.log("get text by id (read) : ");
                 console.log(res);
                 break ;
             case 'compareText':
                 const compare = new Compare();
                 //checkNbParam(params.length , 3, "compareText");
-                res =  await compareElementWithSqlRequete (driver , async ()=>{}, params[0],client, params[1], params[2],  compare.compare )
+                res =  await compareElementWithSqlRequete (async ()=>{}, params[0],client, params[1], params[2],  compare.compare )
                 console.log ("compareText res : ", res);
                 break ; 
             default : 
@@ -94,20 +96,20 @@ const main =  async ()=>{
     // await client.connect();
 
     await client.connect();
-    const driver = new Builder().forBrowser('firefox').build();
-    readCommandsFile(driver,'com1.txt');
+    openNavigator();
+    readCommandsFile('com1.txt');
 
     // await driver.get(ENDPOINT);
     // const compare = new Compare();
 
-    // let res =  await testSelector (driver,async ()=>{await clickOn(driver,"display_availability");},"name_selector",client,'SELECT full_name FROM teacher;','full_name', compare.compare);
+    // let res =  await testSelector (async ()=>{await clickOn("display_availability");},"name_selector",client,'SELECT full_name FROM teacher;','full_name', compare.compare);
     // console.log(res);
-    // await availabilityTests(driver,client,compare);
+    // await availabilityTests(client,compare);
     // TODO add make appointment test here ...
 
     // TODO add teacher list here ...
 
-    await driver.close();
+    closeNavigator();
 }
 
 main() ; 

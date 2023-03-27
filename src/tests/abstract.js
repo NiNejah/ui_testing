@@ -2,11 +2,11 @@ const getRowsFromDb = require("../tools/dbTools");
 const { getTextById } = require("../tools/driverTools");
 
 
-const test = async (beforeAction, elmId, sqlRequete, compareFunction ) => {
+const compareElementWithSqlRequete= async (beforeAction, elmId, dbClient ,sqlRequete, sqlRow , compareFunction ) => {
     await beforeAction();
     let body = await getTextById(elmId);
-    let resp = await getRowsFromDb(sqlRequete);
-    return compareFunction(body,resp,'\n');
+    let resp = await getRowsFromDb(dbClient,sqlRequete);
+    return compareFunction(body,'\n',resp,sqlRow);
 }
 
 /**
