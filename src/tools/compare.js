@@ -28,7 +28,9 @@ class Compare {
         if(arguments.length === 4){
             return compare1 (arguments[0],arguments[1],arguments[2],arguments[3]) ; 
         }
-        
+        else if (arguments.length === 2){
+            return compareInnerHTML1 (arguments[0],arguments[1]) ; 
+        }  
     }
 }
 module.exports = Compare ; 
