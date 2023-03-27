@@ -1,0 +1,3 @@
+@open http://127.0.0.1:8000 ;
+@click display_availability ; 
+@compareText name_selector 'SELECT full_name FROM teacher' full_name ;

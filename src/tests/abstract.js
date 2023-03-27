@@ -9,7 +9,6 @@ const test = async (beforeAction, elmId, sqlRequete, compareFunction ) => {
     return compareFunction(body,resp,'\n');
 }
 
-
 /**
  * 
  * @param {*} beforeAction 
@@ -37,11 +36,5 @@ const testSelector = async (beforeAction , elmId , sqlRequete,sqlRow,compareFunc
     let resp = await getRowsFromDb(sqlRequete);
     return compareFunction(body,'\n',resp,sqlRow);
 }
-const testInputText =  async (beforeAction, elmId, arg4 , arg5 , ) => {return true ;} 
-const testInputRedio =  async (beforeAction, elmIds, arg4 , arg5 , ) => {return true ;} 
-const testInputTextarea = async (beforeAction, elmId, expectedText ,compareFunction) => {return true ;} 
 
-const testInnerHTML = async (beforeAction, elmId, expectedHTML ,compareFunction) => {return true ;} 
-const testInnerText = async (beforeAction, elmId, expectedText ,compareFunction) => {return true ;} 
-
-module.exports = {test,testSelector} ;
+module.exports = {compareElementWithSqlRequete,testSelector} ;

@@ -13,18 +13,24 @@ class Compare {
             console.log("-----------------------------------------");
         }
         //TODO ...
-        let compare2 =  () => {
-            console.log("non arge ...");
+        let compareHTML =  (innerhtlm1,innerhtlm2) => {
+            console.log("compareHTML  ...");
+            return innerhtlm1.innerHTML == innerhtlm2.innerHTML;
         }
         //TODO ...
-        let compare3 =  (str1)=> {
-            console.log("one arg ... ");
+        let compareInnerHTML1= (innerhtlm1, innerhtlm2) => {
+            const innerHTML1 = innerhtlm1.innerHTML.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+            const innerHTML2 = innerhtlm2.innerHTML.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+            
+            return innerHTML1 === innerHTML2;
         }
 
         if(arguments.length === 4){
             return compare1 (arguments[0],arguments[1],arguments[2],arguments[3]) ; 
         }
-        
+        else if (arguments.length === 2){
+            return compareInnerHTML1 (arguments[0],arguments[1]) ; 
+        }  
     }
 }
 module.exports = Compare ; 
