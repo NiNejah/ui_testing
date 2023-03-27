@@ -37,3 +37,6 @@
     les tests doivent s'assurer que l’interface web répond rapidement et efficacement aux requˆetes de l’utilisateur, même lorsqu'il y a un grand nombre d’utilisateurs simultan ́es ou des charges de travail  ́elevées.
 #### 3.2.5 La compatibilité
     les tests doivent s’assurer que l’interface web est compatible avec diff ́erents navigateurs web, systèmes d’exploitation et appareils.
+
+## Rialisation : 
+ce qu'on a fait ! 

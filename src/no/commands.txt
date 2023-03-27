@@ -1,8 +1,0 @@
-@Maxi
-1
-2;
-@Mini 3 4;
-@tot a e r y;
-@Maxi 3 4;
-@Ali "ahlll;;;kvl_àçààr@"
-r;
