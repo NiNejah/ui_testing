@@ -5,7 +5,7 @@ const client = require("../config/db");
 const ENDPOINT = require ("../config/config");
 const availabilityTests  = require("./availability");
 const Compare = require("../tools/compare")
-const {test,testSelector} = require("./abstract");
+const {test,testSelector,compareElementWithSqlRequete} = require("./abstract");
 const driverTools = require("../tools/driverTools");
 const { exit } = require("process");
 const { clickOn , sendKeysById, getTextById } = driverTools ;
@@ -51,31 +51,32 @@ const executeCommand = async (driver, command) => {
     let res = '' ; 
     if (match) {
         const annotation = match[1];
+        console.log(annotation);
         const params = match[2].split(' ');
-        const jsFunctionName = functions[annotation];
+        //const jsFunctionName = functions[annotation];
         switch (annotation){
             case 'open':
-                checkNbParam(params.length , 1 , "open");
-                await driver.get(params);
+                //checkNbParam(params.length , 1 , "open");
+                await driver.get(...params);
                 break ;
             case 'click':
-                checkNbParam(params.length , 1 , "click");
-                await clickOn(driver,params);
+                //checkNbParam(params.length , 1 , "click");
+                await clickOn(driver, ...params);
                 break ;
             case 'write':
-                checkNbParam(params.length , 2 , "write");
-                await sendKeysById(driver,...params);
+                //checkNbParam(params.length , 2 , "write");
+                await sendKeysById(driver, ...params);
                 break ;
             case 'read':
                 // one for the moment 
-                checkNbParam(params.length , 1, "read");
-                res = await getTextById(driver,params);
+                //checkNbParam(params.length , 1, "read");
+                res = await getTextById(driver, ...params);
                 console.log("get text by id (read) : ");
                 console.log(res);
                 break ;
             case 'compareText':
                 const compare = new Compare();
-                checkNbParam(params.length , 3, "compareText");
+                //checkNbParam(params.length , 3, "compareText");
                 res =  await compareElementWithSqlRequete (driver , async ()=>{}, params[0],client, params[1], params[2],  compare.compare )
                 console.log ("compareText res : ", res);
                 break ; 
