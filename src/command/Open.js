@@ -1,4 +1,5 @@
 const driver = require("../config/driver");
+const { openNavigator } = require("../tools/driverTools");
 
 class Open {
     url = ""; 
@@ -6,11 +7,12 @@ class Open {
         this.url = url ;  
     }
 
-    execute(){
+    async execute(){
         try {
-            open(url);
+            await openNavigator(this.url);
         }catch (error){
             console.log(error);
         }
     };
 }
+module.exports = Open ;

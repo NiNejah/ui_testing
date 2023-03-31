@@ -1,25 +1,11 @@
-@open 
-http://test.fr
+@open
+http://127.0.0.1:8000
 
 #com1 com2 
-@click 
-display_availability 
+@click
+display_availability
 
-@compareText 
-name_selector 
-full_name 
-SELECT full_name FROM teacher 
-
-@compareText 
-name_selector 
-full_name 
-<html>
-<body>
-<pre>
-pozj dpok
- dansa daz
-  
-  azdaz
-  ;
-</pre>
-
+@compareText
+name_selector
+full_name
+SELECT full_name FROM teacher

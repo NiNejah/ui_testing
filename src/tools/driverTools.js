@@ -7,8 +7,8 @@ const ENDPOINT = require ("../config/config");
 /**
  * Open navigar
 */
-const openNavigator = async ()=>{
-    return await driver.get(ENDPOINT);
+const openNavigator = async (endPoint)=>{
+    return await driver.get(endPoint);
 }
 
 

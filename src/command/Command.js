@@ -1,10 +1,14 @@
+const Open = require("./Open");
+const Click = require("./Click");
+const CompareText = require("./CompareText");
+const {concatenateLastElements} = require("../tools/tools")
+
 class Command {
-    static create(...args) {
+    static create(args) {
       if (args.length < 1) {
         throw new Error("Invalid arguments");
       }
       const commandName = args[0];
-
       switch (commandName) {
         case "@open":
           if (args.length !== 2) {
@@ -29,3 +33,5 @@ class Command {
       }
     }
 }
+
+module.exports = Command ;

@@ -7,3 +7,4 @@ class Compare {
         console.log(`FAILED : expact = ${expacted}   /  actual = ${actual}`)
     }
 }
+module.exports = Compare ;

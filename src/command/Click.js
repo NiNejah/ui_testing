@@ -9,9 +9,10 @@ class Click {
 
     async execute(){
         try {
-            await clickOn(id);
+            await clickOn(this.id);
         }catch (error){
             console.log(error);
         }
     };
 }
+module.exports = Click ;
