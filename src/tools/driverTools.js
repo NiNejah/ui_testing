@@ -53,4 +53,13 @@ const getTextById = async (elmId )=>{
     return res ; 
 }
 
-module.exports = { clickOn , sendKeysById, getTextById, openNavigator, closeNavigator} ; 
+const getHTMLById = async (elmId) => {
+    let res = await driver.findElement(By.id(elmId)).getAttribute('innerHTML').then((v) => {
+      return v;
+    });
+    return res;
+};
+  
+
+
+module.exports = { clickOn , sendKeysById, getTextById, openNavigator, closeNavigator, getHTMLById} ; 
