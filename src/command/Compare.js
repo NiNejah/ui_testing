@@ -1,6 +1,6 @@
 class Compare {
     execute(){
-        console.log(">>>> Compare exectution start ...");
+        console.log(">>>> Compare execution start ...");
     };
     toString(){};
     displayFailedTest(expacted,actual){

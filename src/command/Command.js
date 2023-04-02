@@ -1,7 +1,7 @@
 const Open = require("./Open");
 const Click = require("./Click");
 const CompareText = require("./CompareText");
-const {concatenateLastElements} = require("../tools/tools");
+const {concatenateLastElements} = require("../tools/textTools");
 const Write = require("./Write");
 
 class Command {
@@ -27,13 +27,16 @@ class Command {
           }
           return new Write(args[1], args[2]);
         case "@read":
-          
         case "@compareText":
-            if (args.length !== 4) {
-                throw new Error(`Invalid arguments for command ${commandName}`);
-            }
+            // if (args.length !== 4) {
+            //     throw new Error(`Invalid arguments for command ${commandName}`);
+            // }
             args = concatenateLastElements(args,3) ; 
             return new CompareText(args[1], args[2],args[3]);
+        case "@compareInnerHTML":
+          console.log("@compareInnerHTML");
+          break ;
+
         default:
           throw new Error(`Unknown command ${commandName}`);
       }

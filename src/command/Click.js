@@ -8,10 +8,13 @@ class Click {
     }
 
     async execute(){
+        console.log(">>>> Click execution start ...");
         try {
             await clickOn(this.id);
+            console.log("Click : PASS !");
         }catch (error){
             console.log(error);
+            console.log("Click : NOT PASS !");
         }
     };
 }
