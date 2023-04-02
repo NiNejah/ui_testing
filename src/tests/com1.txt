@@ -3,9 +3,29 @@ http://127.0.0.1:8000
 
 #com1 com2 
 @click
-display_availability
+display_availability 
 
-@compareText
-name_selector
+@compareText 
+name_selector 
 full_name
-SELECT full_name FROM teacher
+SELECT  
+full_name 
+FROM 
+teacher
+
+@compareInnerHTML 
+name_selector
+<div>
+    <h1>
+        Tilte etgtgtr gtgt  
+    </h1>
+    <div>
+        .... 
+    </div>
+</div>
+
+@compareText 
+id 
+somme_name
+SELECT somme_name FROM 
+somme_table
