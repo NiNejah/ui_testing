@@ -1,7 +1,8 @@
 const Open = require("./Open");
 const Click = require("./Click");
 const CompareText = require("./CompareText");
-const {concatenateLastElements} = require("../tools/tools")
+const {concatenateLastElements} = require("../tools/tools");
+const Write = require("./Write");
 
 class Command {
     static create(args) {
@@ -20,6 +21,11 @@ class Command {
             throw new Error(`Invalid arguments for command ${commandName}`);
           }
           return new Click(args[1], args[2]);
+        case "@write":
+          if (args.length !== 3) {
+            throw new Error(`Invalid arguments for command ${commandName}`);
+          }
+          return new Write(args[1], args[2]);
         case "@read":
           
         case "@compareText":
