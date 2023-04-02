@@ -3,9 +3,8 @@ http://127.0.0.1:8000
 
 #com1 com2 
 @click
-display_availability
+add_teacher
 
-@compareText
-name_selector
-full_name
-SELECT full_name FROM teacher
+@write
+fnameEnse
+Nayar
