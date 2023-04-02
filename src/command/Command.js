@@ -34,9 +34,9 @@ class Command {
             args = concatenateLastElements(args,3) ; 
             return new CompareText(args[1], args[2],args[3]);
         case "@compareInnerHTML":
-          console.log("@compareInnerHTML");
-          break ;
-
+            args = concatenateLastElements(args,3) ;
+            console.log(args[3]);
+            return null ;
         default:
           throw new Error(`Unknown command ${commandName}`);
       }
