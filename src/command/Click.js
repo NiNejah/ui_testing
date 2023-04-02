@@ -11,10 +11,10 @@ class Click {
         console.log(">>>> Click execution start ...");
         try {
             await clickOn(this.id);
-            console.log("Click : PASS !");
+            console.log(`Click on ${this.id} : PASS !`);
         }catch (error){
             console.log(error);
-            console.log("Click : NOT PASS !");
+            console.log(`Click on ${this.id} : NOT PASS !`);
         }
     };
 }

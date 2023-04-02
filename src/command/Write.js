@@ -13,10 +13,10 @@ class Write {
         console.log(">>>> Write execution start ...");
         try {
             await sendKeysById(this.id, this.text);
-            console.log("Write : PASS !");
+            console.log(`Write ${this.text} in ${this.id} : PASS !`);
         }catch (error){
             console.log(error);
-            console.log("Write : NOT PASS !");
+            console.log(`Write ${this.text} in ${this.id} : NOT PASS !`);
         }
     };
 }

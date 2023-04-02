@@ -14,22 +14,20 @@ class CompareText extends Compare{
 
     async execute(){
         super.execute();
-        console.log(this.toString());
         let body = await getTextById(this.elmId);
         let sqlResponse = await getRowsFromDb(this.sqlRequete);
         let strArray = body.split('\n');
         for (let i = 0; i < strArray.length; i++) {
-            console.log( strArray[i] ,"  \t|  " ,sqlResponse[i][this.sqlRow]) ; 
+            // console.log( strArray[i] ,"  \t|  " ,sqlResponse[i][this.sqlRow]) ; 
             if(strArray[i].localeCompare(sqlResponse[i][this.sqlRow]) !== 0 ){
                 super.displayFailedTest(sqlResponse[i][this.sqlRow],strArray[i]);
             }
         }
-        console.log("CompareText : PASS !");
-    
+        console.log(this.toString()," : PASS !");
     }
 
     toString(){
-        return `Compare Text :  element id = ${this.elmId}, sql Requete = ${this.sqlRequete} , sql Row = ${this.sqlRow}`;
+        return `CompareText :  element id = ${this.elmId}, sql Requete = ${this.sqlRequete} , sql Row = ${this.sqlRow}`;
     }
 }
 

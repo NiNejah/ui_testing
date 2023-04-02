@@ -11,10 +11,10 @@ class Open {
         console.log(">>>> Open execution start ...");
         try {
             await openNavigator(this.url);
-            console.log("Open : PASS !");
+            console.log(`Open ${this.url}: PASS !`);
         }catch (error){
             console.log(error);
-            console.log("Open : NOT PASS !");
+            console.log(`Open ${this.url}: NOT PASS /!\\`);
         }
     };
 }

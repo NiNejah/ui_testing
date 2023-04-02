@@ -13,17 +13,16 @@ const main =  async ()=>{
     client.connect();
     // await driver.get(ENDPOINT);
     const fileContent = fs.readFileSync('./tests/com1.txt', 'utf8');
-    let res = tools.parseText(fileContent);
+    let commandBlocks = tools.parseText(fileContent);
     let comds = [] ; 
-    for (const c of res){
+    for (const cmdBlock of commandBlocks){
         // console.log(c);
-        await comds.push(Command.create(c)); 
+        await comds.push(Command.create(cmdBlock)); 
     }
-    // console.log(tools.concatenateLastElements(res[(res.length-1)],3));
+    // console.log(tools.concatenateLastElements(commandBlocks[(commandBlocks.length-1)],3));
     for (let e of comds){
         await e.execute()    
     }
-    // await driver.close();
 }
 
 main() ; 
