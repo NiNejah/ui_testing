@@ -42,6 +42,16 @@ const sendKeysById = async (elmId , text )=>{
 
 /**
  * 
+ * @param {string} elmId The ID to search for
+ * @param {value} value The text to set. 
+ */
+const InputValueById = async (elmId, value) =>{
+    let input =  await driver.findElement(By.id(elmId));
+    
+}
+
+/**
+ * 
  * @param {string} elmId The ID to search for.
  * @return {string} element's visible text.
  */
