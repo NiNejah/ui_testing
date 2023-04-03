@@ -13,10 +13,6 @@ id
 id 
 text
 
-@read 
-id  
-(action)
-
 @compareText 
 id 
 sqlRowTobeCompare 
