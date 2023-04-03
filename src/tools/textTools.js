@@ -25,6 +25,20 @@ const parseText = (text) => {
 
   return blocks;
 }
+
+const concatenateLastElements = (arr , startIndex)=>{
+    const firstPart = arr.slice(0, startIndex);
+    const secondPart = arr.slice(startIndex);
+    const lastElement = secondPart.join(' ');
+    firstPart.push(lastElement);
+    return firstPart;
+}
+  
+module.exports  = {sleep , parseText , concatenateLastElements } ;
+
+
+
+
 const parseText3 = (text) => {
   const regex = /@([^\s]*)\s*([\s\S]*?)(?=\n@|\n$)/gm;
   // const regex = /@(\w+)\s+([\s\S]*?)(?=\n@|\n$)/g;
@@ -76,17 +90,3 @@ const parseText1  =(text) => {
   }
   return blocks;
 }
-
-const concatenateLastElements = (arr , startIndex)=>{
-    const firstPart = arr.slice(0, startIndex);
-    const secondPart = arr.slice(startIndex);
-    const lastElement = secondPart.join(' ');
-    firstPart.push(lastElement);
-    return firstPart;
-}
-  
-
-
-
-
-module.exports  = {sleep , parseText , concatenateLastElements } ;
