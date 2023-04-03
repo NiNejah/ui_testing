@@ -37,8 +37,9 @@ class Command {
           // if (args.length !== 3) {
           //   throw new Error(`Invalid arguments for command ${commandName}`);
           // }
-          args = concatenateLastElements(args,2);
-          return new CompareInnerHTML(args[1],args[2]); 
+          return null ;
+          // args = concatenateLastElements(args,2);
+          // return new CompareInnerHTML(args[1],args[2]); 
         default:
           throw new Error(`Unknown command ${commandName}`);
       }

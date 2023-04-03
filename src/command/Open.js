@@ -11,11 +11,15 @@ class Open {
         console.log(">>>> Open execution start ...");
         try {
             await openNavigator(this.url);
-            console.log(`Open ${this.url}: PASS !`);
+            return true ;
         }catch (error){
+            return false ; 
             console.log(error);
-            console.log(`Open ${this.url}: NOT PASS /!\\`);
+            console.log(this.toString(),": NOT PASS /!\\");
         }
     };
+    toString(){
+       return `Open ${this.url}`;
+    }
 }
 module.exports = Open ;

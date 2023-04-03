@@ -8,7 +8,7 @@ class CompareInnerHTML extends Compare{
         this.elmId = elmId ; 
         this.innerHTLM = innerHTLM ; 
     }
-
+///html compare :regarder cette fonction
     async execute(){
         super.execute();
         console.log(this.toString());

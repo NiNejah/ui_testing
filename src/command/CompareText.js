@@ -10,15 +10,17 @@ class CompareText extends Compare{
         this.elmId = elmId ; 
         this.sqlRow = sqlRow ; 
         this.sqlRequete = sqlRequete ;
+        toString();
     }
 
     async execute(){
         super.execute();
         let body = await getTextById(this.elmId);
+        console.log(body);
         let sqlResponse = await getRowsFromDb(this.sqlRequete);
         let strArray = body.split('\n');
         for (let i = 0; i < strArray.length; i++) {
-            // console.log( strArray[i] ,"  \t|  " ,sqlResponse[i][this.sqlRow]) ; 
+            console.log( strArray[i] ,"  \t|  " ,sqlResponse[i][this.sqlRow]) ; 
             if(strArray[i].localeCompare(sqlResponse[i][this.sqlRow]) !== 0 ){
                 super.displayFailedTest(sqlResponse[i][this.sqlRow],strArray[i]);
             }

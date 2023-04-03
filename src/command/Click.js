@@ -13,7 +13,7 @@ class Click {
             await clickOn(this.id);
             console.log(`Click on ${this.id} : PASS !`);
         }catch (error){
-            console.log(error);
+            // console.log(error);
             console.log(`Click on ${this.id} : NOT PASS !`);
         }
     };

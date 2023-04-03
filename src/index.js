@@ -12,7 +12,7 @@ const main =  async ()=>{
     // readCommandsFile(driver,'com1.txt');
     client.connect();
     // await driver.get(ENDPOINT);
-    const fileContent = fs.readFileSync('./tests/com1.txt', 'utf8');
+    const fileContent = fs.readFileSync('./tests/com2.txt', 'utf8');
     let commandBlocks = tools.parseText(fileContent);
     
     let comds = [] ; 
@@ -22,7 +22,8 @@ const main =  async ()=>{
             await comds.push(cmdObj); 
         }
     }
-    // // console.log(tools.concatenateLastElements(commandBlocks[(commandBlocks.length-1)],3));
+    // this loop will execute all test command 
+    // that's well display the comand with it's toString and : PASS if the test pass or : NOT PASS     
     for (let e of comds){
         await e.execute()    
     }

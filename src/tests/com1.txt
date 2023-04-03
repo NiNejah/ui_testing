@@ -3,7 +3,7 @@ http://127.0.0.1:8000
 
 #com1 com2 
 @click
-add_teacher
+add_ticher
 
 @write
 fnameEnse
