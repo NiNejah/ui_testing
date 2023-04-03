@@ -59,7 +59,20 @@ const getHTMLById = async (elmId) => {
     });
     return res;
 };
-  
+const Datevalide= async (dateD) => {
+        const now = new Date();
+        const dateFormatee = now.toLocaleDateString();
+        console.log("la date actuelle est : "+dateFormatee);
+        console.log("la date entree est : "+dateD);
+        
+    if(dateD>=dateFormatee){
+        return true;
+    }
+    else{
+        return false;
+    }
+   
+};
 
 
-module.exports = { clickOn , sendKeysById, getTextById, openNavigator, closeNavigator, getHTMLById} ; 
+module.exports = { clickOn , sendKeysById, getTextById, openNavigator, closeNavigator, getHTMLById,Datevalide} ; 

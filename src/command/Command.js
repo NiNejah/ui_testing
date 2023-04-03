@@ -4,6 +4,7 @@ const CompareText = require("./CompareText");
 const {concatenateLastElements} = require("../tools/textTools");
 const Write = require("./Write");
 const CompareInnerHTML = require("./CompareInnerHTML");
+const Datevalid = require("./Datevalid");
 
 class Command {
     static create(args) {
@@ -39,6 +40,12 @@ class Command {
           // }
           args = concatenateLastElements(args,2);
           return new CompareInnerHTML(args[1],args[2]); 
+        case "@datevalid" :
+          if (args.length !== 2) {
+            throw new Error(`Invalid arguments for command ${commandName}`);
+          }
+          return new Datevalid(args[1]);
+             
         default:
           throw new Error(`Unknown command ${commandName}`);
       }
