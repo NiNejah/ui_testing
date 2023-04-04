@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^4.3.7",
+    "html-compare": "^0.0.1",
     "pg": "^8.9.0",
     "selenium-webdriver": "^4.8.1"
   }

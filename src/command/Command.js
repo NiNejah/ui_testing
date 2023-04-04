@@ -5,6 +5,7 @@ const {concatenateLastElements} = require("../tools/textTools");
 const Write = require("./Write");
 const CompareInnerHTML = require("./CompareInnerHTML");
 const Datevalid = require("./Datevalid");
+const Close = require("./Close");
 
 class Command {
     static create(args) {
@@ -45,7 +46,11 @@ class Command {
             throw new Error(`Invalid arguments for command ${commandName}`);
           }
           return new Datevalid(args[1]);
-             
+        case "@close":
+          if (args.length !== 1) {
+            throw new Error(`Invalid arguments for command ${commandName}`);
+          }
+          return new Close(args[1]);
         default:
           throw new Error(`Unknown command ${commandName}`);
       }

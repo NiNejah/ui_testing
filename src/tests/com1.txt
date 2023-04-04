@@ -1,5 +1,5 @@
 @open
-http://127.0.0.1:8000
+http://127.0.0.1:8040
 
 
 #com1 com2 
@@ -7,8 +7,37 @@ http://127.0.0.1:8000
 add_teacher
 
 @write
-file
-/home/pygargue/Documents/ui_testing/test_create_teacher.txt
+fnameEnse
+Ahmat
 
-@click
-create_teacher
+@compareInnerHTML
+fnameEnse
+Ahmat
+
+@compareInnerHTML
+name_selector
+<option id="1" value="Guillaume Blin">
+                Guillaume Blin            </option>
+                        <option id="2" value="Philipe Narbel">
+                Philipe Narbel            </option>
+                        <option id="3" value="Alain Griffault">
+                Alain Griffault            </option>
+
+@compareInnerHTML
+name_selector
+<option id="1" value="Guillaume Blin">
+                Guillaume Blin            </option>
+                        <option id="2" value="Philipe Narbel">
+                Philipe Narbel            </option>
+                        <option id="3" value="Alain Griffault">
+                Alain Griffaul            </option>
+
+
+#@write
+#file
+#/home/ahmat/Documents/M1/S2/pdp/ui_testing/test_create_teacher.txt
+
+#@click
+#create_teacher
+
+#@close
