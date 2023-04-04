@@ -43,11 +43,11 @@ const sendKeysById = async (elmId , text )=>{
 /**
  * 
  * @param {string} elmId The ID to search for
- * @param {value} value The text to set. 
  */
-const InputValueById = async (elmId, value) =>{
-    let input =  await driver.findElement(By.id(elmId));
-    
+async function getElementValueById(elmId) {
+    const element = await driver.findElement(By.id(elmId));
+    const value = await element.getAttribute('value');
+    return value;
 }
 
 /**
@@ -69,6 +69,8 @@ const getHTMLById = async (elmId) => {
     });
     return res;
 };
+
+
 const Datevalide= async (dateD) => {
         const now = new Date();
         const dateFormatee = now.toLocaleDateString();
@@ -85,4 +87,4 @@ const Datevalide= async (dateD) => {
 };
 
 
-module.exports = { clickOn , sendKeysById, getTextById, openNavigator, closeNavigator, getHTMLById,Datevalide} ; 
+module.exports = { clickOn , sendKeysById, getElementValueById, getTextById, openNavigator, closeNavigator, getHTMLById,Datevalide} ; 
