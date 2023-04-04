@@ -8,14 +8,11 @@ class Open {
     }
 
     async execute(){
-        console.log(">>>> Open execution start ...");
         try {
             await openNavigator(this.url);
-            return true ;
+            return { testDescription: this.toString(), isPass: true, errorMessage: '' } ;
         }catch (error){
-            return false ; 
-            console.log(error);
-            console.log(this.toString(),": NOT PASS /!\\");
+            return { testDescription: this.toString(), isPass: false, errorMessage: error } ;
         }
     };
     toString(){

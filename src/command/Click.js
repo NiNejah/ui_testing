@@ -8,14 +8,16 @@ class Click {
     }
 
     async execute(){
-        console.log(">>>> Click execution start ...");
         try {
             await clickOn(this.id);
-            console.log(`Click on ${this.id} : PASS !`);
+            return { testDescription: this.toString(), isPass: true, errorMessage: '' } ;
         }catch (error){
-            // console.log(error);
-            console.log(`Click on ${this.id} : NOT PASS !`);
+            return { testDescription: this.toString(), isPass: false, errorMessage: error } ;
         }
     };
+
+    toString(){
+        return `Click on ${this.id}`;
+    }
 }
 module.exports = Click ;

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Your Form </title>
+    <!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+    <script type="text/javascript">
+        const runTest = require("index.js")  
+    </script>
+    <script type="module">
+        import { runTest } from "./index.js";
+        // module.runTest = runTest;
+    </script> -->
+      
+    <style>
+        .alert {
+            padding: 20px;
+            background-color: #04AA6D; 
+            /* #f44336; */
+            color: white;
+            opacity: 1;
+            transition: opacity 0.6s;
+            margin-bottom: 15px;
+        }
+
+        .alert.fialed {background-color: #f44336;}
+    </style>
+</head>
+<body>
+
+    <h1>Test Results : </h1>
+    <section >
+        <% if (allRes.length > 0) { %>
+            <% for (let i = 0; i < allRes.length; i++) { %>
+                <% if (allRes[i].isPass) { %>
+                    <div class="alert">
+                        <h5 > <%= allRes[i].testDescription %> </h5>
+                    </div>
+                <% } else { %>
+                    <div class="alert fialed">
+                        <h5> <%= allRes[i].testDescription %> </h5>
+                        <p>  <%= allRes[i].errorMessage %> </p>
+                    </div>
+                <% } %>
+            <% } %>
+        <% } else { %>
+            <h2>fieald to run the tests </h2>
+        <% } %>
+    </section>
+
+</body>
+</html>

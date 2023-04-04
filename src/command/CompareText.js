@@ -9,23 +9,22 @@ class CompareText extends Compare{
         super(); // call the constructor of the parent class
         this.elmId = elmId ; 
         this.sqlRow = sqlRow ; 
-        this.sqlRequete = sqlRequete ;
-        toString();
+        this.sqlRequete = sqlRequete ; 
     }
 
     async execute(){
         super.execute();
         let body = await getTextById(this.elmId);
-        console.log(body);
+        // console.log(body);
         let sqlResponse = await getRowsFromDb(this.sqlRequete);
         let strArray = body.split('\n');
         for (let i = 0; i < strArray.length; i++) {
-            console.log( strArray[i] ,"  \t|  " ,sqlResponse[i][this.sqlRow]) ; 
+            // console.log( strArray[i] ,"  \t|  " ,sqlResponse[i][this.sqlRow]) ; 
             if(strArray[i].localeCompare(sqlResponse[i][this.sqlRow]) !== 0 ){
-                super.displayFailedTest(sqlResponse[i][this.sqlRow],strArray[i]);
+                return {testDescription: this.toString(), isPass: false, errorMessage: super.displayFailedTest(sqlResponse[i][this.sqlRow],strArray[i]) } ;
             }
         }
-        console.log(this.toString()," : PASS !");
+        return {testDescription: this.toString(), isPass: true, errorMessage: '' } ;
     }
 
     toString(){

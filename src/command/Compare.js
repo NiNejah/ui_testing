@@ -4,7 +4,7 @@ class Compare {
     };
     toString(){};
     displayFailedTest(expacted,actual){
-        console.log(`FAILED : expact = ${expacted}   /  actual = ${actual}`)
+        return `FAILED : expact = ${expacted}   /  actual = ${actual}` ; 
     }
 }
 module.exports = Compare ;

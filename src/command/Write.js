@@ -10,14 +10,17 @@ class Write {
     }
 
     async execute(){
-        console.log(">>>> Write execution start ...");
+        // console.log(">>>> Write execution start ...");
         try {
             await sendKeysById(this.id, this.text);
-            console.log(`Write ${this.text} in ${this.id} : PASS !`);
+            return {testDescription: this.toString(), isPass: true, errorMessage: '' } ;
         }catch (error){
-            console.log(error);
-            console.log(`Write ${this.text} in ${this.id} : NOT PASS !`);
+            return {testDescription: this.toString(), isPass: true, errorMessage: error} ;
         }
     };
+    
+    toString(){
+        return `Write ${this.text} in ${this.id}` ;
+    }
 }
 module.exports = Write ;
