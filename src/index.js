@@ -22,9 +22,10 @@ app.post('/runTest', upload.single('myFile'), async (req, res) => {
     let allRes = [];
     // console.log(res); // contains information about the uploaded file
     const file = req.file;
-    let filePath = file.path ; 
+    let filePath = '' ; 
     // res.send("file loaded !");
     try {
+        filePath = file.path ; 
         await runTest(filePath,cmds,allRes);
         res.render('runTests',{cmds, allRes});
     }catch (err){
