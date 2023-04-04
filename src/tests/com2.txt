@@ -1,0 +1,26 @@
+@open
+http://127.0.0.1:8040
+
+
+@compareInnerHTML
+fnameEnse
+Ahmat
+
+@compareInnerHTML
+name_selector
+<option id="1" value="Guillaume Blin">
+                Guillaume Blin            </option>
+                        <option id="2" value="Philipe Narbel">
+                Philipe Narbel            </option>
+                        <option id="3" value="Alain Griffault">
+                Alain Griffault            </option>
+
+@compareInnerHTML
+name_selector
+<option id="1" value="Guillaume Blin">
+                Guillaume Blin            </option>
+                        <option id="2" value="Philipe Narbel">
+                Philipe Narbel            </option>
+                        <option id="3" value="Alain Griffault">
+                Alain Griffaul            </option>
+

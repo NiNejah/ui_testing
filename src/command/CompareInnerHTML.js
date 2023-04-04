@@ -17,10 +17,10 @@ class CompareInnerHTML extends Compare{
         
         var result = htmlCompare.compare(this.body, this.innerHTLM);
         if (result.different) {
-            super.displayFailedTest(this.body,this.innerHTLM);
+           return  {testDescription: this.toString(), isPass: false, errorMessage: super.displayFailedTest(this.body,this.innerHTLM) } ;
         } else {
-            console.log(this.toString()," : PASS !");
-        }  
+            return {testDescription: this.toString(), isPass: true, errorMessage: '' } ; 
+        }
     }
     
     async toString(){
