@@ -9,15 +9,16 @@
       
 </head>
 <body>
-
-    <h1> Please select a test file  </h1>
-    <form action="/runTest" method="post" enctype="multipart/form-data">
-        <input type="file" name="myFile" accept=".txt" > <br>
-        <button type="submit">run Test</button>
-    </form>  
-    <!-- <a href="/runTests"> 
-        run tests 
-    </a> -->
-    <div id="testResults"></div>
+    <div class="main">
+        <h1> Please select a test file  </h1>
+        <form action="/runTest" method="post" enctype="multipart/form-data">
+            <input type="file" name="myFile" accept=".txt"> <br>
+            <button type="submit">run Test</button>
+        </form>  
+        <a href="/documentation"> 
+            Documentation 
+        </a>
+        <div id="testResults"></div>
+    </div>
 </body>
 </html>

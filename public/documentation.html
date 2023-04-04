@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"><script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+    <!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/default.min.css"> -->
+    <title>Document</title>
+</head>
+<body>
+    <div class="doc">
+        <h1>Documentation</h1>
+        <div class="about">
+            <h2>About</h2>
+            <p> Toolbox of <a href="/static/index.html"> automated tests </a> for web interfaces (mainly forms) capable of testing navigation, interaction with the client, and use cases. </p>
+        </div>
+
+        <div class="how-to-use">
+            <h2>How to use</h2>
+            <p><span class="annotation"> @annotation </span>  arg1 arg2 ...</p>
+            <!-- <pre>
+                <code class="html">
+
+                </code>
+            </pre> -->
+        </div>
+        <div class="annotation-description">
+            <h2>Annotation</h2>
+            <table>
+                <tr>
+                    <th>Annotation</th>
+                    <th>Parametres</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td class="annotation">@open</td>
+                    <td>url (form url)</td>
+                    <td>open the browser</td>
+                </tr>
+                <tr>
+                    <td class="annotation">@close</td>
+                    <td> none </td>
+                    <td> close the  browser </td>
+                </tr>
+                <tr>
+                    <td class="annotation">@click</td>
+                    <td> id </td>
+                    <td> It allows you to click on an element in the form by providing its ID. </td>
+                </tr>
+                <tr>
+                    <td class="annotation">@write</td>
+                    <td> id / text </td>
+                    <td> send a text to the form</td>
+                </tr>
+                <tr>
+                    <td class="annotation">@read</td>
+                    <td> id  </td>
+                    <td> read a field and do something with the results</td>
+                </tr>
+                <tr>
+                    <td class="annotation">@compareText</td>
+                    <td> id / sqlRowTobeCompare / sqlRequete </td>
+                    <td> compare an innertext with an SQL query</td>
+                </tr>
+              </table>
+        </div>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/lib/highlight.min.js"></script> -->
+    <!-- <script>hljs.initHighlightingOnLoad();</script> -->
+</body>
+</html>

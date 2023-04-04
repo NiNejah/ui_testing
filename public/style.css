@@ -1,10 +1,11 @@
 
-body {
+.main {
     margin-left: 35vw;
     margin-top: 40vh;
     align-items: center;
     justify-content: center;
 }
+
 button {
     margin: 2em;
     background-color:darkcyan;
@@ -20,3 +21,41 @@ button {
 button:hover {
     background-color:rgba(0, 139, 139, 0.374);
 }
+
+/* doc  */
+
+.doc {
+    font-family: Arial, sans-serif;
+    margin: 3em;
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* width: 100vw; */
+}
+
+h2 {
+    color: cadetblue;
+    margin-top: 2em;
+}
+
+.annotation {
+    color: rgb(131, 20, 63);
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }

@@ -4,14 +4,15 @@ const app = express();
 const port = 8080;
 
 const fs = require('fs');
+
+const upload = multer({ dest: 'uploads/' });
+
+
 const client = require("./config/db");
 // const should = require("chai").should();
 const ENDPOINT = require ("./config/config");
 const Command = require("./command/Command");
 const tools = require("./tools/textTools");
-const driver = require('./config/driver');
-
-const upload = multer({ dest: 'uploads/' });
 
 
 let clientConnected = false ; 
@@ -27,7 +28,7 @@ app.post('/runTest', upload.single('myFile'), async (req, res) => {
         await runTest(filePath,cmds,allRes);
         res.render('runTests',{cmds, allRes});
     }catch (err){
-        res.send("invalide test file or command !");
+        res.send("<h2> Invalide test file or command !</h2> <a href='/documentation'> See Documentation </a>");
     }finally {
         fs.unlink(file.path, (err) => {
             if (err) {
@@ -52,9 +53,14 @@ app.get('/', (req, res) => {
     res.redirect('/static/index.html');
 });
 
+app.get('/documentation', (req, res) => {
+    res.redirect('/static/documentation.html');
+});
+
 
 
 const runTest = async (filePath,cmds,allRes) => {
+
     if (!clientConnected){
         await client.connect();
         clientConnected = true ; 
@@ -81,5 +87,5 @@ const runTest = async (filePath,cmds,allRes) => {
     }
     // await driver.close();
     console.log ("tests end ...");
-    
 }
+
