@@ -1,0 +1,22 @@
+
+body {
+    margin-left: 35vw;
+    margin-top: 40vh;
+    align-items: center;
+    justify-content: center;
+}
+button {
+    margin: 2em;
+    background-color:darkcyan;
+    width: 20em;
+    height: 3em;
+    font-size: 21px;
+    cursor: pointer;
+    color: aliceblue;
+    border: none;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color:rgba(0, 139, 139, 0.374);
+}

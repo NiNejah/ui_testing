@@ -15,22 +15,39 @@
     </script> -->
       
     <style>
+        body {
+            margin: 10em;
+        }
         .alert {
-            padding: 20px;
+            padding: 0.5em;
             background-color: #04AA6D; 
             /* #f44336; */
             color: white;
             opacity: 1;
             transition: opacity 0.6s;
-            margin-bottom: 15px;
+            margin-bottom: 1em;
         }
 
         .alert.fialed {background-color: #f44336;}
+        #errorMessage {
+            display: none;
+        }
+        .detailsbtn {
+            margin: 1em;
+            background-color: white;
+            color: #f44336;
+            cursor: pointer;
+            height: 1.8em;
+            text-align: center;
+            justify-items: center;
+            border-radius: 1em;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
-    <h1>Test Results : </h1>
+    <h3>Test Results : <span class="alert">PASS</span> <span class="alert fialed">FIALD</span> </h3>
     <section >
         <% if (allRes.length > 0) { %>
             <% for (let i = 0; i < allRes.length; i++) { %>
@@ -41,7 +58,8 @@
                 <% } else { %>
                     <div class="alert fialed">
                         <h5> <%= allRes[i].testDescription %> </h5>
-                        <p>  <%= allRes[i].errorMessage %> </p>
+                        <p class="detailsbtn" onclick="moreDetails()"> Details </p>
+                        <p id="errorMessage">  <%= allRes[i].errorMessage %> </p>
                     </div>
                 <% } %>
             <% } %>
@@ -49,6 +67,15 @@
             <h2>fieald to run the tests </h2>
         <% } %>
     </section>
-
+<script>
+    const moreDetails  = ()=> {
+        const err = document.getElementById("errorMessage");
+        if( err.style.display === "block"){
+            err.style.display = "none";
+        }else {
+            err.style.display = "block"
+        }
+    }
+</script>
 </body>
 </html>
