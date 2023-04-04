@@ -20,15 +20,7 @@ class CompareInnerHTML extends Compare{
             super.displayFailedTest(this.body,this.innerHTLM);
         } else {
             console.log(this.toString()," : PASS !");
-        }
-        // if(body !== this.innerHTLM){
-        //     super.displayFailedTest(body,this.innerHTLM);
-        //     //console.log(this.innerHTLM.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ""));
-        // }else{
-        //     console.log(this.toString()," : PASS !");
-        // }
-        
-        
+        }  
     }
     
     async toString(){
