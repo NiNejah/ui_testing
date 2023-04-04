@@ -19,7 +19,7 @@ button {
 }
 
 button:hover {
-    background-color:rgba(0, 139, 139, 0.374);
+    background-color:rgba(0, 139, 139, 0.577);
 }
 
 /* doc  */
@@ -39,6 +39,10 @@ h2 {
     margin-top: 2em;
 }
 
+a {
+    text-decoration: none;
+    color: dodgerblue;
+}
 .annotation {
     color: rgb(131, 20, 63);
     font-weight: bold;
@@ -50,12 +54,12 @@ table {
     width: 100%;
   }
 
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
+td, th {
+border: 1px solid #dddddd;
+text-align: left;
+padding: 8px;
+}
 
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
+tr:nth-child(even) {
+background-color: #dddddd;
+}

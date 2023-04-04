@@ -28,7 +28,7 @@ app.post('/runTest', upload.single('myFile'), async (req, res) => {
         await runTest(filePath,cmds,allRes);
         res.render('runTests',{cmds, allRes});
     }catch (err){
-        res.send("<h2> Invalide test file or command !</h2> <a href='/documentation'> See Documentation </a>");
+        res.send("<h2> Invalide test file or command !</h2> <a style='text-decoration: none;color: dodgerblue;' href='/documentation'> See Documentation </a>");
     }finally {
         fs.unlink(file.path, (err) => {
             if (err) {
