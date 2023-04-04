@@ -1,5 +1,5 @@
 const driver = require("../config/driver");
-const {ReadValueById } = require("../tools/driverTools");
+const {getElementValueById, getTextById } = require("../tools/driverTools");
 const InputForm = require("./InputForm");
 
 class InputFormRead extends InputForm{
@@ -11,9 +11,9 @@ class InputFormRead extends InputForm{
     }
 
     async execute(){
-        console.log(">>>> Write execution start ...");
+        console.log(">>>> Read execution start ...");
         try {
-            value = ReadValueById(this.id);
+            this.value = await getElementValueById(this.id);
             console.log(`Read ${this.id} : PASS !`);
         }catch (error){
             console.log(error);
@@ -22,7 +22,7 @@ class InputFormRead extends InputForm{
     };
 
     GetReadValue(){
-        if(value!=-1){
+        if(this.value!=-1){
             return this.value;
         }
         else{
@@ -31,4 +31,4 @@ class InputFormRead extends InputForm{
         }
     }
 }
-module.exports = {InputFormRead} ;
+module.exports = InputFormRead ;

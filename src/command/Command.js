@@ -2,8 +2,8 @@ const Open = require("./Open");
 const Click = require("./Click");
 const CompareText = require("./CompareText");
 const {concatenateLastElements} = require("../tools/textTools");
-const InputFormWrite = require("./InputFormWrite");
 const InputFormRead = require("./InputFormRead");
+const InputFormWrite = require("./InputFormWrite");
 const CompareInnerHTML = require("./CompareInnerHTML");
 const Datevalid = require("./Datevalid");
 

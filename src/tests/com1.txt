@@ -9,5 +9,8 @@ add_teacher
 file
 /home/pygargue/Documents/ui_testing/test_create_teacher.txt
 
+@InputFormRead
+file
+
 @click
 create_teacher
