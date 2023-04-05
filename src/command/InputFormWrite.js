@@ -15,10 +15,10 @@ class InputFormWrite extends InputForm{
         console.log(">>>> InputFormWrite execution start ...");
         try {
             await sendKeysById(this.id, this.value);
-            console.log(`Write ${this.value} in ${this.id} : PASS !`);
+            return {testDescription: this.toString(), isPass: true, errorMessage: '' } ;
         }catch (error){
             console.log(error);
-            console.log(`Write ${this.value} in ${this.id} : NOT PASS !`);
+            return {testDescription: this.toString(), isPass: false, errorMessage: ' error message' } ;
         }
     };
 }

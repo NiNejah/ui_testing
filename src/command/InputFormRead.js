@@ -14,10 +14,10 @@ class InputFormRead extends InputForm{
         console.log(">>>> InputFormRead execution start ...");
         try {
             this.value = await getElementValueById(this.id);
-            console.log(`Read ${this.id} : PASS !`);
+            return {testDescription: this.toString(), isPass: true, errorMessage: '' } ;
         }catch (error){
             console.log(error);
-            console.log(`Read ${this.id} : NOT PASS !`);
+            return {testDescription: this.toString(), isPass: false, errorMessage: ' error message' } ;
         }
     };
 
