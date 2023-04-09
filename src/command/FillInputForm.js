@@ -1,19 +1,20 @@
 const driver = require("../config/driver");
-const {getElementValueById, getTextById } = require("../tools/driverTools");
+const {sendKeysById } = require("../tools/driverTools");
 const InputForm = require("./InputForm");
 
-class InputFormRead extends InputForm{
-    id = -1;
-    value=-1;
-    constructor (id){
+class FillInputForm extends InputForm{
+    id = -1; 
+    value = -1;
+    constructor (id, value){
         super();
         this.id = id ;
+        this.value = value ;
     }
 
     async execute(){
-        console.log(">>>> InputFormRead execution start ...");
+        console.log(">>>> InputFormWrite execution start ...");
         try {
-            this.value = await getElementValueById(this.id);
+            await sendKeysById(this.id, this.value);
             return {testDescription: this.toString(), isPass: true, errorMessage: '' } ;
         }catch (error){
             console.log(error);
@@ -21,20 +22,8 @@ class InputFormRead extends InputForm{
         }
     };
 
-    
     toString(){
-        return `get value id : ${this.elmId}, response: ${this.GetReadValue} ` ;
-    }
-    
-
-    GetReadValue(){
-        if(this.value!=-1){
-            return this.value;
-        }
-        else{
-            console.log("Aucune valeur n'est lu");
-            return this.value;
-        }
+        return `Fill element id : ${this.elmId}, with value: ${this.value} ` ;
     }
 }
-module.exports = InputFormRead ;
+module.exports = FillInputForm ;

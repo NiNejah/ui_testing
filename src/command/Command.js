@@ -2,7 +2,7 @@ const Open = require("./Open");
 const Click = require("./Click");
 const CompareText = require("./CompareText");
 const {concatenateLastElements} = require("../tools/textTools");
-const FillImputForm = require("./FillInputForm");
+const FillInputForm = require("./FillInputForm");
 const GetValueInputForm = require("./GetValueInputForm");
 const CompareInnerHTML = require("./CompareInnerHTML");
 const Datevalid = require("./Datevalid");
@@ -30,7 +30,7 @@ class Command {
             throw new Error(`Invalid arguments for command ${commandName}`);
           }
           return new FillInputForm(args[1], args[2]);
-        case "@InputFormRead":
+        case "@GetValueInputForm":
           if (args.length !== 2) {
             throw new Error(`Invalid arguments for command ${commandName}`);
           }

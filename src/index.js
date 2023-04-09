@@ -12,7 +12,7 @@ const main =  async ()=>{
     // readCommandsFile(driver,'com1.txt');
     client.connect();
     // await driver.get(ENDPOINT);
-    const fileContent = fs.readFileSync('./tests/com1.txt', 'utf8');
+    const fileContent = fs.readFileSync('./src/tests/com1.txt', 'utf8');
     let commandBlocks = tools.parseText(fileContent);
     
     let comds = [] ; 
