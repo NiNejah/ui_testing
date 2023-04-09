@@ -42,6 +42,16 @@ const sendKeysById = async (elmId , text )=>{
 
 /**
  * 
+ * @param {string} elmId The ID to search for
+ */
+async function getElementValueById(elmId) {
+    const element = await driver.findElement(By.id(elmId));
+    const value = await element.getAttribute('value');
+    return value;
+}
+
+/**
+ * 
  * @param {string} elmId The ID to search for.
  * @return {string} element's visible text.
  */
@@ -59,7 +69,22 @@ const getHTMLById = async (elmId) => {
     });
     return res;
 };
-  
 
 
-module.exports = { clickOn , sendKeysById, getTextById, openNavigator, closeNavigator, getHTMLById} ; 
+const Datevalide= async (dateD) => {
+        const now = new Date();
+        const dateFormatee = now.toLocaleDateString();
+        console.log("la date actuelle est : "+dateFormatee);
+        console.log("la date entree est : "+dateD);
+        
+    if(dateD>=dateFormatee){
+        return true;
+    }
+    else{
+        return false;
+    }
+   
+};
+
+
+module.exports = { clickOn , sendKeysById, getElementValueById, getTextById, openNavigator, closeNavigator, getHTMLById,Datevalide} ; 

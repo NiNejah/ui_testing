@@ -1,31 +1,17 @@
 @open
-http://127.0.0.1:8000
+http://127.0.0.1:8040
 
-#com1 com2 
+#com1 com2
 @click
 add_tacher
 
-@write
-fnameEnse
-Nayar
+@InputFormWrite
+file
+/home/pygargue/Documents/ui_testing/test_create_teacher.txt
 
-#com1 com2 
+@InputFormRead
+file
+
 @click
-display_availability
+create_teacher
 
-@compareText 
-name_selector 
-full_name
-SELECT  
-full_name 
-FROM 
-teacher
-
-@compareInnerHTML
-name_selector
-<option id="1" value="Guillaume Blin">
-                Guillaume Blin            </option>
-                        <option id="2" value="Philipe Narbel">
-                Philipe Narbel            </option>
-                        <option id="3" value="Alain Griffault">
-                Alain Griffault            </option>

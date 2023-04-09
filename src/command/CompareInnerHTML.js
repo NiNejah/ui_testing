@@ -1,8 +1,10 @@
 const Compare = require("./Compare");
-const {getHTMLById} = require("../tools/driverTools")
+const {getHTMLById} = require("../tools/driverTools");
+const htmlCompare = require('html-compare');
 class CompareInnerHTML extends Compare{
     elmId = -1 ;
     innerHTLM = "";
+    body;
     constructor (elmId,innerHTLM){
         super(); // call the constructor of the parent class
         this.elmId = elmId ; 
@@ -11,22 +13,18 @@ class CompareInnerHTML extends Compare{
 ///html compare :regarder cette fonction
     async execute(){
         super.execute();
-        console.log(this.toString());
-        let body = await getHTMLById(this.elmId);
-
-        if(body !== this.innerHTLM.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")){
-            //super.displayFailedTest(body,this.innerHTLM);
-            console.log(this.innerHTLM.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ""));
-        }else{
-            console.log("test pass ! ");
+        this.body = await getHTMLById(this.elmId);
+        
+        var result = htmlCompare.compare(this.body, this.innerHTLM);
+        if (result.different) {
+           return  {testDescription: this.toString(), isPass: false, errorMessage: super.displayFailedTest(this.body,this.innerHTLM) } ;
+        } else {
+            return {testDescription: this.toString(), isPass: true, errorMessage: '' } ; 
         }
-        
-        
     }
-
+    
     async toString(){
-        let body = await getHTMLById(this.elmId);
-        return `Compare innerHTML :  element id = ${this.elmId}, html = ${body} , toHtml = ${this.innerHTLM}`;
+        return `Compare innerHTML :  element id = ${this.elmId}, html = ${this.body} , toHtml = ${this.innerHTLM}`;
     }
 }
 
