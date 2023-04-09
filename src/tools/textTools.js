@@ -1,19 +1,3 @@
-const hljs = require('highlight.js');
-
-const md = require('markdown-it')({
-  highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return '<pre class="hljs"><code>' +
-               hljs.highlight(lang, str, true).value +
-               '</code></pre>';
-      } catch (__) {}
-    }
-    return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
-  }
-});
-
-const meta = require('markdown-it-meta');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 const parseText = (text) => {
@@ -49,19 +33,4 @@ const concatenateLastElements = (arr , startIndex)=>{
   return firstPart;
 }
 
-
-const makeHtmlFromMd = (mdFile) => {
-
-  const markdownText = fs.readFileSync(mdFile, 'utf8');
-  md.use(meta);
-  md.meta['stylesheet'] = 'node_modules/highlight.js/styles/default.css';
-  const html = md.render(markdownText);
-  const linkTag = `<link rel="stylesheet" href="${md.meta['stylesheet']}" />`;
-
-  const finalHtml = html.replace(/<head>/, `<head>${linkTag}`);
-  console.log(finalHtml); 
-  return finalHtml ;
-
-}
-
-module.exports  = {sleep, parseText, concatenateLastElements, makeHtmlFromMd } ;
+module.exports  = {sleep, parseText, concatenateLastElements } ;
