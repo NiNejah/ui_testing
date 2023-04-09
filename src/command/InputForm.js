@@ -3,6 +3,9 @@ class InputForm {
         console.log(">>>> Input execution start ...");
     };
 
+    toString(){
+    }
+
     
 }
 module.exports = InputForm ;
