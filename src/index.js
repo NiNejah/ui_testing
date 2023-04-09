@@ -76,7 +76,7 @@ app.post('/runTest', upload.single('myFile'), async (req, res) => {
     }catch (err){
         const errMess = `
         <h2 style='margin-top: 40vh;margin-left: 35vw;'> 
-            Invalide test file or command ! <a style="text-decoration: none;color: dodgerblue;" href="/documentation"> See Documentation </a> 
+            Invalide test file or command !
         </h2>`;
         res.send(errMess);
     }finally {
