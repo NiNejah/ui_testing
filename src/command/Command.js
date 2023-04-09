@@ -25,12 +25,12 @@ class Command {
             throw new Error(`Invalid arguments for command ${commandName}`);
           }
           return new Click(args[1], args[2]);
-        case "@FillInputForm":
+        case "@fillInputForm":
           if (args.length !== 3) {
             throw new Error(`Invalid arguments for command ${commandName}`);
           }
           return new FillInputForm(args[1], args[2]);
-        case "@GetValueInputForm":
+        case "@getValueInputForm":
           if (args.length !== 2) {
             throw new Error(`Invalid arguments for command ${commandName}`);
           }

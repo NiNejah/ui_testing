@@ -1,0 +1,36 @@
+@open
+http://127.0.0.1:8000
+
+#com1 com2
+@click
+make_appointment_bt
+
+@fillInputForm
+fname
+Nayar
+
+@fillInputForm
+email
+nayar.galela@etu.u-bordeaux.fr
+
+@fillInputForm
+adr
+chez moi
+
+@fillInputForm
+city
+pessac
+
+@click
+prof2
+
+@fillInputForm
+professor2
+2023-03-25
+
+@click
+get_appt
+
+
+
+
