@@ -5,11 +5,11 @@ http://127.0.0.1:8040
 @click
 add_teacher
 
-@InputFormWrite
+@FillInputForm
 file
 /home/pygargue/Documents/ui_testing/test_create_teacher.txt
 
-@InputFormRead
+@GetValueInputForm
 file
 
 @click
