@@ -29,7 +29,7 @@ app.post('/runTest', upload.single('myFile'), async (req, res) => {
         await runTest(filePath,cmds,allRes);
         res.render('runTests',{cmds, allRes});
     }catch (err){
-        const errMess = `
+        const errMess =`
         <h2 style='margin-top: 40vh;margin-left: 35vw;'> 
             Invalide test file or command ! <a style="text-decoration: none;color: dodgerblue;" href='/static/documentation.html'> See Documentation </a> 
         </h2>`;
@@ -60,32 +60,6 @@ app.get('/', (req, res) => {
 
 app.get('/documentation', (req, res) => {
     res.redirect('/static/documentation.html');
-});
-
-app.post('/runTest', upload.single('myFile'), async (req, res) => {
-    let cmds = [] ; 
-    let allRes = [];
-    // console.log(res); // contains information about the uploaded file
-    const file = req.file;
-    let filePath = '' ; 
-    // res.send("file loaded !");
-    try {
-        filePath = file.path ; 
-        await runTest(filePath,cmds,allRes);
-        res.render('runTests',{cmds, allRes});
-    }catch (err){
-        const errMess = `
-        <h2 style='margin-top: 40vh;margin-left: 35vw;'> 
-            Invalide test file or command !
-        </h2>`;
-        res.send(errMess);
-    }finally {
-        fs.unlink(file.path, (err) => {
-            if (err) {
-                console.error(err);
-            }
-        });
-    }
 });
 
 
