@@ -1,16 +1,20 @@
 @open
 http://127.0.0.1:8000
 
-#com1 com2
+#on part dans le formulaire pour ajouter un professeur
 @click
 add_teacher
 
+#on ajoute le fichier contenant les valeurs et qui charge et remplis automatiquement le formulaire
+#ce test c'est pour montrer que notre fonction peut remplir un input de type file
 @InputFormWrite
 file
 /home/pygargue/Documents/ui_testing/fill_crt_teacher.txt
 
+#je lis pour veifier si c'est bien le fichier charger
 @InputFormRead
 file
 
+#j'envoie le formulaire
 @click
 create_teacher

@@ -1,29 +1,36 @@
+
 @open
 http://127.0.0.1:8000
 
-#com1 com2
+#On clique sur le button 
 @click
 make_appointment_bt
 
+#rempli le champ full name 
 @InputFormWrite
 fname
 Nayar
 
+#rempli le champ email
 @InputFormWrite
 email
 nayar.galela@etu.u-bordeaux.fr
 
+#rempli le champ adress
 @InputFormWrite
 adr
 chez moi
 
+#rempli le champ city
 @InputFormWrite
 city
 pessac
 
+#click sur philipe Narbel du input de type radio 
 @click
 prof2
 
+#rempli la date
 @InputFormWrite
 professor2
 2023-03-25
