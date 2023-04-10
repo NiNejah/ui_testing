@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const app = express();
-const port = 8080;
+const port = 8081;
 
 const fs = require('fs');
 
@@ -64,7 +64,7 @@ app.set('view engine', 'ejs');
 app.use('/static', express.static('../public'));
 
 app.listen(port, () => {
-    console.log(`Le serveur écoute sur http://localhost:8080`)
+    console.log(`Le serveur écoute sur http://localhost:${port}`)
 })
 
 // route to display the home page
