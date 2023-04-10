@@ -1,10 +1,12 @@
+# On ouvre le navigateur sur http://127.0.0.1:8040
 @open
 http://127.0.0.1:8040
 
-# com2 
+# On fait un clique sur l'id : display_availability
 @click
 display_availability
 
+# On compare le code html avec l'id: name_selector avec un code html
 @compareInnerHTML
 name_selector
 <option id="1" value="Guillaume Blin">
