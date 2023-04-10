@@ -5,25 +5,25 @@ http://127.0.0.1:8000
 @click
 make_appointment_bt
 
-@write
+@InputFormWrite
 fname
 Nayar
 
-@write
+@InputFormWrite
 email
 nayar.galela@etu.u-bordeaux.fr
 
-@write
+@InputFormWrite
 adr
 chez moi
 
-@write
+@InputFormWrite
 city
 pessac
 
 @click
 prof2
 
-@read
+@InputFormWrite
 professor2
 2023-03-25
