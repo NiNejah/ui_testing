@@ -13,6 +13,7 @@ const client = require("./config/db");
 const ENDPOINT = require ("./config/config");
 const Command = require("./command/Command");
 const tools = require("./tools/textTools");
+const { node } = require('html-compare/lib/util/cheerio-utils');
 
 
 let clientConnected = false ; 
@@ -23,23 +24,36 @@ app.post('/runTest', upload.single('myFile'), async (req, res) => {
     // console.log(res); // contains information about the uploaded file
     const file = req.file;
     let filePath = '' ; 
+    let errMess = `<div style='margin-top: 40vh;margin-left: 35vw;'> `; 
     // res.send("file loaded !");
     try {
-        filePath = file.path ; 
+        try{
+            filePath = file.path ; 
+        }catch (err){
+            errMess = errMess + 
+            `<h2> 
+                ${err}
+            </h2>`;
+        }
         await runTest(filePath,cmds,allRes);
         res.render('runTests',{cmds, allRes});
     }catch (err){
-        const errMess =`
-        <h2 style='margin-top: 40vh;margin-left: 35vw;'> 
-            Invalide test file or command ! <a style="text-decoration: none;color: dodgerblue;" href='/static/documentation.html'> See Documentation </a> 
+        errMess = errMess + `
+        <h2> 
+            ${err}
         </h2>`;
-        res.send(errMess);
     }finally {
-        fs.unlink(file.path, (err) => {
-            if (err) {
-                console.error(err);
-            }
-        });
+        if(file != null){
+            fs.unlink(file.path, (err) => {
+                if (err) {
+                    console.error(err);
+                }
+            });
+        }
+        if(errMess !== ''){
+            errMess = errMess + `</div>`
+            res.send(errMess);
+        }
     }
 });
 
