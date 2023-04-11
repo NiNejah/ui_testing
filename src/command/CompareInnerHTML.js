@@ -1,6 +1,8 @@
 const Compare = require("./Compare");
 const {getHTMLById} = require("../tools/driverTools");
 const htmlCompare = require('html-compare');
+const os = require('os');
+
 class CompareInnerHTML extends Compare{
     elmId = -1 ;
     innerHTLM = "";
@@ -23,8 +25,11 @@ class CompareInnerHTML extends Compare{
         }
     }
     
-    async toString(){
-        return `Compare innerHTML :  element id = ${this.elmId}, html = ${this.body} , toHtml = ${this.innerHTLM}`;
+    toString(){
+        return `Compare innerHTML :\n
+        element id = ${this.elmId},\n
+        html = ${this.body},\n
+        innerHTLM = ${this.innerHTLM}`;
     }
 }
 

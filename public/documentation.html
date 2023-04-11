@@ -51,12 +51,12 @@
                     <td> It allows you to click on an element in the form by providing its ID. </td>
                 </tr>
                 <tr>
-                    <td class="annotation">@write</td>
-                    <td> id / text </td>
-                    <td> send a text to the form</td>
+                    <td class="annotation">@InputFormWrite</td>
+                    <td> id / value </td>
+                    <td> send a value to the form. takes an id and fills a value to any element of the form. It fills all types of input (file, radio, ...)</td>
                 </tr>
                 <tr>
-                    <td class="annotation">@read</td>
+                    <td class="annotation">@InputFormRead</td>
                     <td> id  </td>
                     <td> read a field and do something with the results</td>
                 </tr>
@@ -64,6 +64,11 @@
                     <td class="annotation">@compareText</td>
                     <td> id / sqlRowTobeCompare / sqlRequete </td>
                     <td> compare an innertext with an SQL query</td>
+                </tr>
+                <tr>
+                    <td class="annotation">@compareInnerHTML</td>
+                    <td> id </td>
+                    <td> compare the HTML code of the id with an HTML code</td>
                 </tr>
               </table>
         </div>
