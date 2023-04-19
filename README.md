@@ -1,11 +1,11 @@
 # ui_testing
 
 ## First use 
-1. go to [db.js](./src/config/db.js) and change it to your value.
-2. add <code> db.js </code> to [gitignore](.gitignore)
-3. change the (**port** valriable value if you wiche) in [index.js](./src/index.js)
+1. Go to [db.js](./src/config/db.js) and change it to your own values.
+2. Add <code> db.js </code> to [gitignore](.gitignore)
+3. Change the value of the **port** variable (if desired) in [index.js](./src/index.js)
 
-## install 
+## Installation 
 npm install
 
 ## RUN 
@@ -13,20 +13,20 @@ npm install
 
 > node [index.js](./src/tests/index.js)
 
-## How to use :
-* Plase read the docmantation of the meta lanuge befor [doc](./public/documentation.html).
-* And you have a somme exmple in [here](./src/examples/) starting by [simple exaple](./src/examples/nejah/cmdN1.txt)
-* Creat your cmd.txt file .
+## Usage :
+*  Please read the documentation of the meta language before proceeding to [doc](./public/documentation.html).
+* You can find some examples in [here](./src/examples/) starting with the [simple example](./src/examples/nejah/cmdN1.txt).
+* Create your own cmd.txt file.
 
-* After clicking opening your listinging server <code> http://localhost:8081</code> (defult) 
+* After that, open your listening server by going to <code> http://localhost:8081</code>(default). 
 
-Normaly you have this page :
-![Alt text](./public/images/home1.png)
+Normally, you should see this page:
+![home1](./public/images/home1.png)
 
-Select a you cmd file : 
-![Alt text](./public/images/home2.png)
+Select your cmd file:
+![home2](./public/images/home2.png)
 
-after that click on **run Test** button
+Then, click on the **Run Test** button.
 
 ### A demonstation using [cmdN2.text](./src/examples/nejah/cmdN2.txt) file
 
