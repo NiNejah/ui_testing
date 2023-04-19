@@ -1,6 +1,5 @@
 const { By } = require("selenium-webdriver");
 const driver = require ("../config/driver");
-const ENDPOINT = require ("../config/config");
 
 
 /**

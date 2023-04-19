@@ -7,10 +7,7 @@ const fs = require('fs');
 
 const upload = multer({ dest: 'uploads/' });
 
-
 const client = require("./config/db");
-// const should = require("chai").should();
-const ENDPOINT = require ("./config/config");
 const Command = require("./command/Command");
 const tools = require("./tools/textTools");
 const { node } = require('html-compare/lib/util/cheerio-utils');
@@ -107,6 +104,5 @@ const runTest = async (filePath,cmds,allRes) => {
         }
     }
     // await driver.close();
-    console.log ("tests end ...");
 }
 
