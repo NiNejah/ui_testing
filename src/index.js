@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const app = express();
+// change it as you wich 
 const port = 8081;
 
 const fs = require('fs');
@@ -10,99 +11,94 @@ const upload = multer({ dest: 'uploads/' });
 const client = require("./config/db");
 const Command = require("./command/Command");
 const tools = require("./tools/textTools");
-const { node } = require('html-compare/lib/util/cheerio-utils');
 
+let clientConnected = false;
 
-let clientConnected = false ; 
-
+// Route to handle file upload and run tests
 app.post('/runTest', upload.single('myFile'), async (req, res) => {
-    let cmds = [] ; 
+    let cmds = [];
     let allRes = [];
-    // console.log(res); // contains information about the uploaded file
     const file = req.file;
-    let filePath = '' ; 
+    let filePath = '';
     let errMess = `<div style='margin-top: 40vh;margin-left: 35vw;'> `; 
-    let hasErr = false ; 
-    // res.send("file loaded !");
+    let hasErr = false;
     try {
-        try{
-            filePath = file.path ; 
-        }catch (err){
+        try {
+            filePath = file.path;
+        } catch (err) {
             errMess = errMess + 
             `<h2> 
                 ${err}
             </h2>`;
-            hasErr = true ; 
+            hasErr = true;
         }
-        await runTest(filePath,cmds,allRes);
-        res.render('runTests',{cmds, allRes});
-    }catch (err){
+        await runTest(filePath, cmds, allRes);
+        res.render('runTests', { cmds, allRes });
+    } catch (err) {
         errMess = errMess + `
         <h2> 
         ${err}
         </h2>`;
-        hasErr = true ; 
-    }finally {
-        if(file != null){
+        hasErr = true;
+    } finally {
+        if (file != null) {
             fs.unlink(file.path, (err) => {
                 if (err) {
                     console.error(err);
                 }
             });
         }
-        if(hasErr){
+        if (hasErr) {
             errMess = errMess + `</div>`
             res.send(errMess);
         }
     }
 });
 
-// set EJS as templating engine
+// Set EJS as templating engine
 app.set('view engine', 'ejs');
 
-// give access to 'public' folder from '/static' url's pathname
+// Give access to 'public' folder from '/static' url's pathname
 app.use('/static', express.static('../public'));
 
+// Start listening on the specified port
 app.listen(port, () => {
-    console.log(`Le serveur écoute sur http://localhost:${port}`)
+    console.log(`Server is listening on http://localhost:${port}`);
 })
 
-// route to display the home page
+// Route to display the home page
 app.get('/', (req, res) => {
     res.redirect('/static/index.html');
 });
 
+// Route to display the documentation page
 app.get('/documentation', (req, res) => {
     res.redirect('/static/documentation.html');
 });
 
-
-const runTest = async (filePath,cmds,allRes) => {
-
-    if (!clientConnected){
+// Function to run the tests
+const runTest = async (filePath, cmds, allRes) => {
+    if (!clientConnected) {
         await client.connect();
-        clientConnected = true ; 
+        clientConnected = true;
     }
     const fileContent = fs.readFileSync(filePath, 'utf8');
     let commandBlocks = tools.parseText(fileContent);
-    for (const cmdBlock of commandBlocks){
+    for (const cmdBlock of commandBlocks) {
         try {
-            let cmdObj = Command.create(cmdBlock) ; 
-            if(cmdObj !== null){
+            let cmdObj = Command.create(cmdBlock);
+            if (cmdObj !== null) {
                 await cmds.push(cmdObj); 
             }
-        }catch (err){
+        } catch (err) {
             throw new Error(err);
         }
     }   
-    for (let e of cmds){
+    for (let e of cmds) {
         let res = await e.execute(); 
         allRes.push(res);
-        // console.log(res.testDescription);
-        if (!res.isPass){
-            break ;
+        if (!res.isPass) {
+            break;
         }
     }
-    // await driver.close();
 }
-
