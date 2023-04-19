@@ -25,6 +25,7 @@ app.post('/runTest', upload.single('myFile'), async (req, res) => {
     const file = req.file;
     let filePath = '' ; 
     let errMess = `<div style='margin-top: 40vh;margin-left: 35vw;'> `; 
+    let hasErr = false ; 
     // res.send("file loaded !");
     try {
         try{
@@ -34,14 +35,16 @@ app.post('/runTest', upload.single('myFile'), async (req, res) => {
             `<h2> 
                 ${err}
             </h2>`;
+            hasErr = true ; 
         }
         await runTest(filePath,cmds,allRes);
         res.render('runTests',{cmds, allRes});
     }catch (err){
         errMess = errMess + `
         <h2> 
-            ${err}
+        ${err}
         </h2>`;
+        hasErr = true ; 
     }finally {
         if(file != null){
             fs.unlink(file.path, (err) => {
@@ -50,7 +53,7 @@ app.post('/runTest', upload.single('myFile'), async (req, res) => {
                 }
             });
         }
-        if(errMess !== ''){
+        if(hasErr){
             errMess = errMess + `</div>`
             res.send(errMess);
         }
