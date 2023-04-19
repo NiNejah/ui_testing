@@ -12,7 +12,6 @@ class InputFormWrite extends InputForm{
     }
 
     async execute(){
-        console.log(">>>> InputFormWrite execution start ...");
         try {
             await sendKeysById(this.id, this.value);
             return {testDescription: this.toString(), isPass: true, errorMessage: '' } ;

@@ -3,25 +3,26 @@ const driver = require ("../config/driver");
 const ENDPOINT = require ("../config/config");
 
 
-
 /**
- * Open navigar
-*/
+ * Opens the browser and navigates to the specified endpoint.
+ * @param {string} endPoint The endpoint to navigate to.
+ * @return {!Promise} A promise that will be resolved when the navigation is complete.
+ */
 const openNavigator = async (endPoint)=>{
     return await driver.get(endPoint);
 }
 
-
 /**
- * Close navigator
-*/
+ * Closes the browser.
+ * @return {!Promise} A promise that will be resolved when the browser is closed.
+ */
 const closeNavigator = async ()=>{
     return await driver.close();
 }
 
 /**
- * click on elment on the Browser
- * @param {string} elmId The ID to search for
+ * Clicks on an element with the specified ID on the browser.
+ * @param {string} elmId The ID of the element to click on.
  * @return {!Promise} A promise that will be resolved when the click command has completed.
  */
 const clickOn = async (elmId )=>{
@@ -29,33 +30,31 @@ const clickOn = async (elmId )=>{
 }
 
 /**
- * 
- * @param {string} elmId The ID to search for
- * @param {string | Date } text The text to set. 
+ * Sets the text of an element with the specified ID on the browser.
+ * @param {string} elmId The ID of the element to set the text for.
+ * @param {(string|number|!Promise<string|number>)} valueToSend The value to send to the element. All arguments will be joined into a single sequence.
  */
-const sendKeysById = async (elmId , text )=>{ 
+const sendKeysById = async (elmId , valueToSend )=>{ 
     let input =  await driver.findElement(By.id(elmId)) ;
-    // input.clear();
-    // console.lvisibleog(key);
-    input.sendKeys(text);
+    input.sendKeys(valueToSend);
 }
 
 /**
- * 
- * @param {string} elmId The ID to search for
+ * Gets the value of an element with the specified ID on the browser.
+ * @param {string} elmId The ID of the element to get the value for.
+ * @return {!Promise} A promise that will be resolved with the element's value.
  */
-async function getElementValueById(elmId) {
+const getElementValueById = async (elmId) =>{
     const element = await driver.findElement(By.id(elmId));
     const value = await element.getAttribute('value');
     return value;
 }
 
 /**
- * 
- * @param {string} elmId The ID to search for.
- * @return {string} element's visible text.
+ * Gets the visible text of an element with the specified ID on the browser.
+ * @param {string} elmId The ID of the element to get the text for.
+ * @return {!Promise} A promise that will be resolved with the element's visible text.
  */
-
 const getTextById = async (elmId )=>{ 
     let res = await driver.findElement(By.id(elmId)).getText().then((v)=>{
         return v;
@@ -63,6 +62,11 @@ const getTextById = async (elmId )=>{
     return res ; 
 }
 
+/**
+ * Gets the inner HTML of an element with the specified ID on the browser.
+ * @param {string} elmId The ID of the element to get the HTML for.
+ * @return {!Promise} A promise that will be resolved with the element's inner HTML.
+ */
 const getHTMLById = async (elmId) => {
     let res = await driver.findElement(By.id(elmId)).getAttribute('innerHTML').then((v) => {
       return v;
@@ -70,21 +74,4 @@ const getHTMLById = async (elmId) => {
     return res;
 };
 
-
-const Datevalide= async (dateD) => {
-        const now = new Date();
-        const dateFormatee = now.toLocaleDateString();
-        console.log("la date actuelle est : "+dateFormatee);
-        console.log("la date entree est : "+dateD);
-        
-    if(dateD>=dateFormatee){
-        return true;
-    }
-    else{
-        return false;
-    }
-   
-};
-
-
-module.exports = { clickOn , sendKeysById, getElementValueById, getTextById, openNavigator, closeNavigator, getHTMLById,Datevalide} ; 
+module.exports = { clickOn , sendKeysById, getElementValueById, getTextById, openNavigator, closeNavigator, getHTMLById} ; 

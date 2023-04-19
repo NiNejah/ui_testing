@@ -11,7 +11,6 @@ class InputFormRead extends InputForm{
     }
 
     async execute(){
-        console.log(">>>> InputFormRead execution start ...");
         try {
             this.value = await getElementValueById(this.id);
             return {testDescription: this.toString(), isPass: true, errorMessage: '' } ;
