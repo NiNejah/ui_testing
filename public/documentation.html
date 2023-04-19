@@ -58,7 +58,8 @@
                 <tr>
                     <td class="annotation">@compareText</td>
                     <td> id / sqlRowTobeCompare / sqlRequete </td>
-                    <td> compare an innertext with an SQL query</td>
+                    <td> compare an innertext with an SQL query</td>and you can learn more about the comand from the docmentation.html that i gaved to you 
+                    so fix it and gave me you comant in two messages
                 </tr>
                 <tr>
                     <td class="annotation">@compareInnerHTML</td>
@@ -66,6 +67,32 @@
                     <td> compare the HTML code of the id with an HTML code</td>
                 </tr>
               </table>
+        </div>
+        <div class="example">
+            <h2>File Example</h2>
+            <h4> src/examples/nejah/cmdN2.txt : </h4>
+            <pre>
+                <code>
+            @open
+            http://127.0.0.1:8000
+            
+            @click
+            add_teacher
+            
+            # Should stop here because there are no elements in the test page with this ID (unknown_id)   <--- /!\ 
+            @click
+            unknown_id
+            
+            @compareText 
+            name_selector 
+            full_name
+            SELECT  
+            full_name 
+            FROM 
+            teacher 
+                </code>
+            </pre>
+            <img src="images/demo1.gif" alt="" width="1000px">
         </div>
     </div>
     <!-- <script src="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/lib/highlight.min.js"></script> -->

@@ -1,13 +1,12 @@
-# Change the url to the page you wech to be tested 
 @open
 http://127.0.0.1:8000
 
-# Change th id too
 @click
 add_teacher
 
+# Should stop here because there are no elements in the test page with this ID (unknown_id)
 @click
-display_availability
+unknown_id
 
 @compareText 
 name_selector 
@@ -15,4 +14,4 @@ full_name
 SELECT  
 full_name 
 FROM 
-teacher
+teacher 
