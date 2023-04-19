@@ -5,7 +5,6 @@ const {concatenateLastElements} = require("../tools/textTools");
 const InputFormRead = require("./InputFormRead");
 const InputFormWrite = require("./InputFormWrite");
 const CompareInnerHTML = require("./CompareInnerHTML");
-const Close = require("./Close");
 
 class Command {
     static create(args) {
@@ -46,11 +45,6 @@ class Command {
           // }
           args = concatenateLastElements(args,2);
           return new CompareInnerHTML(args[1],args[2]); 
-        case "@close":
-          if (args.length !== 1) {
-            throw new Error(`Invalid arguments for command ${commandName}`);
-          }
-          return new Close(args[1]);
         default:
           throw new Error(`Unknown command ${commandName}`);
       }
