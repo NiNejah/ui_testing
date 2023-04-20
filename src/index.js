@@ -16,7 +16,6 @@ let clientConnected = false;
 
 // Route to handle file upload and run tests
 app.post('/runTest', upload.single('myFile'), async (req, res) => {
-    let cmds = [];
     let allRes = [];
     const file = req.file;
     let filePath = '';
@@ -32,8 +31,8 @@ app.post('/runTest', upload.single('myFile'), async (req, res) => {
             </h2>`;
             hasErr = true;
         }
-        await runTest(filePath, cmds, allRes);
-        res.render('runTests', { cmds, allRes });
+        await runTest(filePath, allRes);
+        res.render('runTests', {allRes });
     } catch (err) {
         errMess = errMess + `
         <h2> 
@@ -77,7 +76,7 @@ app.get('/documentation', (req, res) => {
 });
 
 // Function to run the tests
-const runTest = async (filePath, cmds, allRes) => {
+const runTest = async (filePath, allRes) => {
     if (!clientConnected) {
         await client.connect();
         clientConnected = true;
@@ -85,20 +84,12 @@ const runTest = async (filePath, cmds, allRes) => {
     const fileContent = fs.readFileSync(filePath, 'utf8');
     let commandBlocks = tools.parseText(fileContent);
     for (const cmdBlock of commandBlocks) {
+        console.log(cmdBlock);
         try {
-            let cmdObj = Command.create(cmdBlock);
-            if (cmdObj !== null) {
-                await cmds.push(cmdObj); 
-            }
+            Command.create(cmdBlock);
         } catch (err) {
             throw new Error(err);
         }
-    }   
-    for (let e of cmds) {
-        let res = await e.execute(); 
-        allRes.push(res);
-        if (!res.isPass) {
-            break;
-        }
     }
+    await Command.execute(allRes); 
 }

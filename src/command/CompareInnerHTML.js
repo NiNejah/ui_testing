@@ -1,9 +1,8 @@
 const Compare = require("./Compare");
 const {getHTMLById} = require("../tools/driverTools");
 const htmlCompare = require('html-compare');
-const os = require('os');
 
-class CompareInnerHTML extends Compare{
+class CompareInnerHTML extends Compare {
     elmId = -1 ;
     innerHTLM = "";
     body;
