@@ -84,7 +84,6 @@ const runTest = async (filePath, allRes) => {
     const fileContent = fs.readFileSync(filePath, 'utf8');
     let commandBlocks = tools.parseText(fileContent);
     for (const cmdBlock of commandBlocks) {
-        console.log(cmdBlock);
         try {
             Command.create(cmdBlock);
         } catch (err) {

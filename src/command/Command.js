@@ -9,7 +9,6 @@ const CompareInnerHTML = require("./CompareInnerHTML");
 class Command {
   static cmds = [];
     static create(args) {
-      console.log(args, args.length);
       if (args.length < 1) {
         throw new Error("Invalid arguments");
       }
@@ -65,6 +64,7 @@ class Command {
           break;
         }
       }
+      this.cmds.length = 0 ; 
     }
 }
 
